@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    body {
+    margin: 0;
+}
+
+section {
+    background-color: #42414B;
+}
+
+label {
+    color: white;
+    display: inline-block;
+    height: 40px;
+    width: 2.65%;
+    border: 1px solid #42414B;
+    background-color: #707070;
+}
+
+label[for="carre"]{
+    visibility: hidden;
+    position: relative;
+    color: white;
+}
+label[for="carre"]::before{
+    color: white;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content:'Make this donation monthly';
+}
+
+.top_number div {
+    margin-left: 31%;
+}
+
+input.carre {
+    display: none;
+}
+
+/* input.carre[type="checkbox"]:checked+label {
+    background-color: greenyellow;
+} */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.flex_left {
+    display: flex;
+}
+  </style>
+
+  <input type="color" id="MyColorPicker" name="MyColorPicker">
+  <input type="submit" value="accept" id="Myelement" onclick=changeColor() />
+
+  <div class="container"><input class="carre" type="checkbox" id="carre1" name="radio" /><label onclick="send()" for="carre1"
+      required="required"></label><input class="carre" type="checkbox" id="carre2" name="radio" /><label onclick="send()" for="carre2"
+      required="required"></label><input class="carre" type="checkbox" id="carre3" name="radio" /><label onclick="send()" for="carre3"
+      required="required"></label><input class="carre" type="checkbox" id="carre4" name="radio" /><label onclick="send()" for="carre4"
+      required="required"></label><input class="carre" type="checkbox" id="carre5" name="radio" /><label onclick="send()" for="carre5"
+      required="required"></label><input class="carre" type="checkbox" id="carre6" name="radio" /><label onclick="send()" for="carre6"
+      required="required"></label><input class="carre" type="checkbox" id="carre7" name="radio" /><label onclick="send()" for="carre7"
+      required="required"></label><input class="carre" type="checkbox" id="carre8" name="radio" /><label onclick="send()" for="carre8"
+      required="required"></label><input class="carre" type="checkbox" id="carre9" name="radio" /><label onclick="send()" for="carre9"
+      required="required"></label><input class="carre" type="checkbox" id="carre10" name="radio" /><label onclick="send()" for="carre10"
+      required="required"></label><input class="carre" type="checkbox" id="carre11" name="radio" /><label onclick="send()" for="carre11"
+      required="required"></label><input class="carre" type="checkbox" id="carre12" name="radio" /><label onclick="send()" for="carre12"
+      required="required"></label><input class="carre" type="checkbox" id="carre13" name="radio" /><label onclick="send()" for="carre13"
+      required="required"></label><input class="carre" type="checkbox" id="carre14" name="radio" /><label onclick="send()" for="carre14"
+      required="required"></label><input class="carre" type="checkbox" id="carre15" name="radio" /><label onclick="send()" for="carre15"
+      required="required"></label><input class="carre" type="checkbox" id="carre16" name="radio" /><label onclick="send()" for="carre16"
+      required="required"></label><input class="carre" type="checkbox" id="carre17" name="radio" /><label onclick="send()" for="carre17"
+      required="required"></label><input class="carre" type="checkbox" id="carre18" name="radio" /><label onclick="send()" for="carre18"
+      required="required"></label><input class="carre" type="checkbox" id="carre19" name="radio" /><label onclick="send()" for="carre19"
+      required="required"></label><input class="carre" type="checkbox" id="carre20" name="radio" /><label onclick="send()" for="carre20"
+      required="required"></label><input class="carre" type="checkbox" id="carre21" name="radio" /><label onclick="send()" for="carre21"
+      required="required"></label><input class="carre" type="checkbox" id="carre22" name="radio" /><label onclick="send()" for="carre22"
+      required="required"></label><input class="carre" type="checkbox" id="carre23" name="radio" /><label onclick="send()" for="carre23"
+      required="required"></label><input class="carre" type="checkbox" id="carre24" name="radio" /><label onclick="send()" for="carre24"
+      required="required"></label><input class="carre" type="checkbox" id="carre25" name="radio" /><label onclick="send()" for="carre25"
+      required="required"></label><input class="carre" type="checkbox" id="carre26" name="radio" /><label onclick="send()" for="carre26"
+      required="required"></label><input class="carre" type="checkbox" id="carre27" name="radio" /><label onclick="send()" for="carre27"
+      required="required"></label><input class="carre" type="checkbox" id="carre28" name="radio" /><label onclick="send()" for="carre28"
+      required="required"></label><input class="carre" type="checkbox" id="carre29" name="radio" /><label onclick="send()" for="carre29"
+      required="required"></label><input class="carre" type="checkbox" id="carre30" name="radio" /><label onclick="send()" for="carre30"
+      required="required"></label><input class="carre" type="checkbox" id="carre31" name="radio" /><label onclick="send()" for="carre31"
+      required="required"></label><input class="carre" type="checkbox" id="carre32" name="radio" /><label onclick="send()" for="carre32"
+      required="required"></label><input class="carre" type="checkbox" id="carre33" name="radio" /><label onclick="send()" for="carre33"
+      required="required"></label><input class="carre" type="checkbox" id="carre34" name="radio" /><label onclick="send()" for="carre34"
+      required="required"></label><input class="carre" type="checkbox" id="carre35" name="radio" /><label onclick="send()" for="carre35"
+      required="required"></label><input class="carre" type="checkbox" id="carre36" name="radio" /><label onclick="send()" for="carre36"
+      required="required"></label><input class="carre" type="checkbox" id="carre37" name="radio" /><label onclick="send()" for="carre37"
+      required="required"></label><input class="carre" type="checkbox" id="carre38" name="radio" /><label onclick="send()" for="carre38"
+      required="required"></label><input class="carre" type="checkbox" id="carre39" name="radio" /><label onclick="send()" for="carre39"
+      required="required"></label><input class="carre" type="checkbox" id="carre40" name="radio" /><label onclick="send()" for="carre40"
+      required="required"></label><input class="carre" type="checkbox" id="carre41" name="radio" /><label onclick="send()" for="carre41"
+      required="required"></label><input class="carre" type="checkbox" id="carre42" name="radio" /><label onclick="send()" for="carre42"
+      required="required"></label><input class="carre" type="checkbox" id="carre43" name="radio" /><label onclick="send()" for="carre43"
+      required="required"></label><input class="carre" type="checkbox" id="carre44" name="radio" /><label onclick="send()" for="carre44"
+      required="required"></label><input class="carre" type="checkbox" id="carre45" name="radio" /><label onclick="send()" for="carre45"
+      required="required"></label><input class="carre" type="checkbox" id="carre46" name="radio" /><label onclick="send()" for="carre46"
+      required="required"></label><input class="carre" type="checkbox" id="carre47" name="radio" /><label onclick="send()" for="carre47"
+      required="required"></label><input class="carre" type="checkbox" id="carre48" name="radio" /><label onclick="send()" for="carre48"
+      required="required"></label><input class="carre" type="checkbox" id="carre49" name="radio" /><label onclick="send()" for="carre49"
+      required="required"></label><input class="carre" type="checkbox" id="carre50" name="radio" /><label onclick="send()" for="carre50"
+      required="required"></label><input class="carre" type="checkbox" id="carre51" name="radio" /><label onclick="send()" for="carre51"
+      required="required"></label><input class="carre" type="checkbox" id="carre52" name="radio" /><label onclick="send()" for="carre52"
+      required="required"></label><input class="carre" type="checkbox" id="carre53" name="radio" /><label onclick="send()" for="carre53"
+      required="required"></label><input class="carre" type="checkbox" id="carre54" name="radio" /><label onclick="send()" for="carre54"
+      required="required"></label><input class="carre" type="checkbox" id="carre55" name="radio" /><label onclick="send()" for="carre55"
+      required="required"></label><input class="carre" type="checkbox" id="carre56" name="radio" /><label onclick="send()" for="carre56"
+      required="required"></label><input class="carre" type="checkbox" id="carre57" name="radio" /><label onclick="send()" for="carre57"
+      required="required"></label><input class="carre" type="checkbox" id="carre58" name="radio" /><label onclick="send()" for="carre58"
+      required="required"></label><input class="carre" type="checkbox" id="carre59" name="radio" /><label onclick="send()" for="carre59"
+      required="required"></label><input class="carre" type="checkbox" id="carre60" name="radio" /><label onclick="send()" for="carre60"
+      required="required"></label><input class="carre" type="checkbox" id="carre61" name="radio" /><label onclick="send()" for="carre61"
+      required="required"></label><input class="carre" type="checkbox" id="carre62" name="radio" /><label onclick="send()" for="carre62"
+      required="required"></label><input class="carre" type="checkbox" id="carre63" name="radio" /><label onclick="send()" for="carre63"
+      required="required"></label><input class="carre" type="checkbox" id="carre64" name="radio" /><label onclick="send()" for="carre64"
+      required="required"></label><input class="carre" type="checkbox" id="carre65" name="radio" /><label onclick="send()" for="carre65"
+      required="required"></label><input class="carre" type="checkbox" id="carre66" name="radio" /><label onclick="send()" for="carre66"
+      required="required"></label><input class="carre" type="checkbox" id="carre67" name="radio" /><label onclick="send()" for="carre67"
+      required="required"></label><input class="carre" type="checkbox" id="carre68" name="radio" /><label onclick="send()" for="carre68"
+      required="required"></label><input class="carre" type="checkbox" id="carre69" name="radio" /><label onclick="send()" for="carre69"
+      required="required"></label><input class="carre" type="checkbox" id="carre70" name="radio" /><label onclick="send()" for="carre70"
+      required="required"></label><input class="carre" type="checkbox" id="carre71" name="radio" /><label onclick="send()" for="carre71"
+      required="required"></label><input class="carre" type="checkbox" id="carre72" name="radio" /><label onclick="send()" for="carre72"
+      required="required"></label><input class="carre" type="checkbox" id="carre73" name="radio" /><label onclick="send()" for="carre73"
+      required="required"></label><input class="carre" type="checkbox" id="carre74" name="radio" /><label onclick="send()" for="carre74"
+      required="required"></label><input class="carre" type="checkbox" id="carre75" name="radio" /><label onclick="send()" for="carre75"
+      required="required"></label><input class="carre" type="checkbox" id="carre76" name="radio" /><label onclick="send()" for="carre76"
+      required="required"></label><input class="carre" type="checkbox" id="carre77" name="radio" /><label onclick="send()" for="carre77"
+      required="required"></label><input class="carre" type="checkbox" id="carre78" name="radio" /><label onclick="send()" for="carre78"
+      required="required"></label><input class="carre" type="checkbox" id="carre79" name="radio" /><label onclick="send()" for="carre79"
+      required="required"></label><input class="carre" type="checkbox" id="carre80" name="radio" /><label onclick="send()" for="carre80"
+      required="required"></label><input class="carre" type="checkbox" id="carre81" name="radio" /><label onclick="send()" for="carre81"
+      required="required"></label><input class="carre" type="checkbox" id="carre82" name="radio" /><label onclick="send()" for="carre82"
+      required="required"></label><input class="carre" type="checkbox" id="carre83" name="radio" /><label onclick="send()" for="carre83"
+      required="required"></label><input class="carre" type="checkbox" id="carre84" name="radio" /><label onclick="send()" for="carre84"
+      required="required"></label><input class="carre" type="checkbox" id="carre85" name="radio" /><label onclick="send()" for="carre85"
+      required="required"></label><input class="carre" type="checkbox" id="carre86" name="radio" /><label onclick="send()" for="carre86"
+      required="required"></label><input class="carre" type="checkbox" id="carre87" name="radio" /><label onclick="send()" for="carre87"
+      required="required"></label><input class="carre" type="checkbox" id="carre88" name="radio" /><label onclick="send()" for="carre88"
+      required="required"></label><input class="carre" type="checkbox" id="carre89" name="radio" /><label onclick="send()" for="carre89"
+      required="required"></label><input class="carre" type="checkbox" id="carre90" name="radio" /><label onclick="send()" for="carre90"
+      required="required"></label><input class="carre" type="checkbox" id="carre91" name="radio" /><label onclick="send()" for="carre91"
+      required="required"></label><input class="carre" type="checkbox" id="carre92" name="radio" /><label onclick="send()" for="carre92"
+      required="required"></label><input class="carre" type="checkbox" id="carre93" name="radio" /><label onclick="send()" for="carre93"
+      required="required"></label><input class="carre" type="checkbox" id="carre94" name="radio" /><label onclick="send()" for="carre94"
+      required="required"></label><input class="carre" type="checkbox" id="carre95" name="radio" /><label onclick="send()" for="carre95"
+      required="required"></label><input class="carre" type="checkbox" id="carre96" name="radio" /><label onclick="send()" for="carre96"
+      required="required"></label><input class="carre" type="checkbox" id="carre97" name="radio" /><label onclick="send()" for="carre97"
+      required="required"></label><input class="carre" type="checkbox" id="carre98" name="radio" /><label onclick="send()" for="carre98"
+      required="required"></label><input class="carre" type="checkbox" id="carre99" name="radio" /><label onclick="send()" for="carre99"
+      required="required"></label><input class="carre" type="checkbox" id="carre100" name="radio" /><label
+      for="carre100" required="required"></label><input class="carre" type="checkbox" id="carre101"
+      name="radio" /><label onclick="send()" for="carre101" required="required"></label><input class="carre" type="checkbox"
+      id="carre102" name="radio" /><label onclick="send()" for="carre102" required="required"></label><input class="carre"
+      type="checkbox" id="carre103" name="radio" /><label onclick="send()" for="carre103" required="required"></label><input
+      class="carre" type="checkbox" id="carre104" name="radio" /><label onclick="send()" for="carre104"
+      required="required"></label><input class="carre" type="checkbox" id="carre105" name="radio" /><label
+      for="carre105" required="required"></label><input class="carre" type="checkbox" id="carre106"
+      name="radio" /><label onclick="send()" for="carre106" required="required"></label><input class="carre" type="checkbox"
+      id="carre107" name="radio" /><label onclick="send()" for="carre107" required="required"></label><input class="carre"
+      type="checkbox" id="carre108" name="radio" /><label onclick="send()" for="carre108" required="required"></label><input
+      class="carre" type="checkbox" id="carre109" name="radio" /><label onclick="send()" for="carre109"
+      required="required"></label><input class="carre" type="checkbox" id="carre110" name="radio" /><label
+      for="carre110" required="required"></label><input class="carre" type="checkbox" id="carre111"
+      name="radio" /><label onclick="send()" for="carre111" required="required"></label><input class="carre" type="checkbox"
+      id="carre112" name="radio" /><label onclick="send()" for="carre112" required="required"></label><input class="carre"
+      type="checkbox" id="carre113" name="radio" /><label onclick="send()" for="carre113" required="required"></label><input
+      class="carre" type="checkbox" id="carre114" name="radio" /><label onclick="send()" for="carre114"
+      required="required"></label><input class="carre" type="checkbox" id="carre115" name="radio" /><label
+      for="carre115" required="required"></label><input class="carre" type="checkbox" id="carre116"
+      name="radio" /><label onclick="send()" for="carre116" required="required"></label><input class="carre" type="checkbox"
+      id="carre117" name="radio" /><label onclick="send()" for="carre117" required="required"></label><input class="carre"
+      type="checkbox" id="carre118" name="radio" /><label onclick="send()" for="carre118" required="required"></label><input
+      class="carre" type="checkbox" id="carre119" name="radio" /><label onclick="send()" for="carre119"
+      required="required"></label><input class="carre" type="checkbox" id="carre120" name="radio" /><label
+      for="carre120" required="required"></label><input class="carre" type="checkbox" id="carre121"
+      name="radio" /><label onclick="send()" for="carre121" required="required"></label><input class="carre" type="checkbox"
+      id="carre122" name="radio" /><label onclick="send()" for="carre122" required="required"></label><input class="carre"
+      type="checkbox" id="carre123" name="radio" /><label onclick="send()" for="carre123" required="required"></label><input
+      class="carre" type="checkbox" id="carre124" name="radio" /><label onclick="send()" for="carre124"
+      required="required"></label><input class="carre" type="checkbox" id="carre125" name="radio" /><label
+      for="carre125" required="required"></label><input class="carre" type="checkbox" id="carre126"
+      name="radio" /><label onclick="send()" for="carre126" required="required"></label><input class="carre" type="checkbox"
+      id="carre127" name="radio" /><label onclick="send()" for="carre127" required="required"></label><input class="carre"
+      type="checkbox" id="carre128" name="radio" /><label onclick="send()" for="carre128" required="required"></label><input
+      class="carre" type="checkbox" id="carre129" name="radio" /><label onclick="send()" for="carre129"
+      required="required"></label><input class="carre" type="checkbox" id="carre130" name="radio" /><label
+      for="carre130" required="required"></label><input class="carre" type="checkbox" id="carre131"
+      name="radio" /><label onclick="send()" for="carre131" required="required"></label><input class="carre" type="checkbox"
+      id="carre132" name="radio" /><label onclick="send()" for="carre132" required="required"></label><input class="carre"
+      type="checkbox" id="carre133" name="radio" /><label onclick="send()" for="carre133" required="required"></label><input
+      class="carre" type="checkbox" id="carre134" name="radio" /><label onclick="send()" for="carre134"
+      required="required"></label><input class="carre" type="checkbox" id="carre135" name="radio" /><label
+      for="carre135" required="required"></label><input class="carre" type="checkbox" id="carre136"
+      name="radio" /><label onclick="send()" for="carre136" required="required"></label><input class="carre" type="checkbox"
+      id="carre137" name="radio" /><label onclick="send()" for="carre137" required="required"></label><input class="carre"
+      type="checkbox" id="carre138" name="radio" /><label onclick="send()" for="carre138" required="required"></label><input
+      class="carre" type="checkbox" id="carre139" name="radio" /><label onclick="send()" for="carre139"
+      required="required"></label><input class="carre" type="checkbox" id="carre140" name="radio" /><label
+      for="carre140" required="required"></label><input class="carre" type="checkbox" id="carre141"
+      name="radio" /><label onclick="send()" for="carre141" required="required"></label><input class="carre" type="checkbox"
+      id="carre142" name="radio" /><label onclick="send()" for="carre142" required="required"></label><input class="carre"
+      type="checkbox" id="carre143" name="radio" /><label onclick="send()" for="carre143" required="required"></label><input
+      class="carre" type="checkbox" id="carre144" name="radio" /><label onclick="send()" for="carre144"
+      required="required"></label><input class="carre" type="checkbox" id="carre145" name="radio" /><label
+      for="carre145" required="required"></label><input class="carre" type="checkbox" id="carre146"
+      name="radio" /><label onclick="send()" for="carre146" required="required"></label><input class="carre" type="checkbox"
+      id="carre147" name="radio" /><label onclick="send()" for="carre147" required="required"></label><input class="carre"
+      type="checkbox" id="carre148" name="radio" /><label onclick="send()" for="carre148" required="required"></label><input
+      class="carre" type="checkbox" id="carre149" name="radio" /><label onclick="send()" for="carre149"
+      required="required"></label><input class="carre" type="checkbox" id="carre150" name="radio" /><label
+      for="carre150" required="required"></label><input class="carre" type="checkbox" id="carre151"
+      name="radio" /><label onclick="send()" for="carre151" required="required"></label><input class="carre" type="checkbox"
+      id="carre152" name="radio" /><label onclick="send()" for="carre152" required="required"></label><input class="carre"
+      type="checkbox" id="carre153" name="radio" /><label onclick="send()" for="carre153" required="required"></label><input
+      class="carre" type="checkbox" id="carre154" name="radio" /><label onclick="send()" for="carre154"
+      required="required"></label><input class="carre" type="checkbox" id="carre155" name="radio" /><label
+      for="carre155" required="required"></label><input class="carre" type="checkbox" id="carre156"
+      name="radio" /><label onclick="send()" for="carre156" required="required"></label><input class="carre" type="checkbox"
+      id="carre157" name="radio" /><label onclick="send()" for="carre157" required="required"></label><input class="carre"
+      type="checkbox" id="carre158" name="radio" /><label onclick="send()" for="carre158" required="required"></label><input
+      class="carre" type="checkbox" id="carre159" name="radio" /><label onclick="send()" for="carre159"
+      required="required"></label><input class="carre" type="checkbox" id="carre160" name="radio" /><label
+      for="carre160" required="required"></label><input class="carre" type="checkbox" id="carre161"
+      name="radio" /><label onclick="send()" for="carre161" required="required"></label><input class="carre" type="checkbox"
+      id="carre162" name="radio" /><label onclick="send()" for="carre162" required="required"></label><input class="carre"
+      type="checkbox" id="carre163" name="radio" /><label onclick="send()" for="carre163" required="required"></label><input
+      class="carre" type="checkbox" id="carre164" name="radio" /><label onclick="send()" for="carre164"
+      required="required"></label><input class="carre" type="checkbox" id="carre165" name="radio" /><label
+      for="carre165" required="required"></label><input class="carre" type="checkbox" id="carre166"
+      name="radio" /><label onclick="send()" for="carre166" required="required"></label><input class="carre" type="checkbox"
+      id="carre167" name="radio" /><label onclick="send()" for="carre167" required="required"></label><input class="carre"
+      type="checkbox" id="carre168" name="radio" /><label onclick="send()" for="carre168" required="required"></label><input
+      class="carre" type="checkbox" id="carre169" name="radio" /><label onclick="send()" for="carre169"
+      required="required"></label><input class="carre" type="checkbox" id="carre170" name="radio" /><label
+      for="carre170" required="required"></label><input class="carre" type="checkbox" id="carre171"
+      name="radio" /><label onclick="send()" for="carre171" required="required"></label><input class="carre" type="checkbox"
+      id="carre172" name="radio" /><label onclick="send()" for="carre172" required="required"></label><input class="carre"
+      type="checkbox" id="carre173" name="radio" /><label onclick="send()" for="carre173" required="required"></label><input
+      class="carre" type="checkbox" id="carre174" name="radio" /><label onclick="send()" for="carre174"
+      required="required"></label><input class="carre" type="checkbox" id="carre175" name="radio" /><label
+      for="carre175" required="required"></label><input class="carre" type="checkbox" id="carre176"
+      name="radio" /><label onclick="send()" for="carre176" required="required"></label><input class="carre" type="checkbox"
+      id="carre177" name="radio" /><label onclick="send()" for="carre177" required="required"></label><input class="carre"
+      type="checkbox" id="carre178" name="radio" /><label onclick="send()" for="carre178" required="required"></label><input
+      class="carre" type="checkbox" id="carre179" name="radio" /><label onclick="send()" for="carre179"
+      required="required"></label><input class="carre" type="checkbox" id="carre180" name="radio" /><label
+      for="carre180" required="required"></label><input class="carre" type="checkbox" id="carre181"
+      name="radio" /><label onclick="send()" for="carre181" required="required"></label><input class="carre" type="checkbox"
+      id="carre182" name="radio" /><label onclick="send()" for="carre182" required="required"></label><input class="carre"
+      type="checkbox" id="carre183" name="radio" /><label onclick="send()" for="carre183" required="required"></label><input
+      class="carre" type="checkbox" id="carre184" name="radio" /><label onclick="send()" for="carre184"
+      required="required"></label><input class="carre" type="checkbox" id="carre185" name="radio" /><label
+      for="carre185" required="required"></label><input class="carre" type="checkbox" id="carre186"
+      name="radio" /><label onclick="send()" for="carre186" required="required"></label><input class="carre" type="checkbox"
+      id="carre187" name="radio" /><label onclick="send()" for="carre187" required="required"></label><input class="carre"
+      type="checkbox" id="carre188" name="radio" /><label onclick="send()" for="carre188" required="required"></label><input
+      class="carre" type="checkbox" id="carre189" name="radio" /><label onclick="send()" for="carre189"
+      required="required"></label><input class="carre" type="checkbox" id="carre190" name="radio" /><label
+      for="carre190" required="required"></label><input class="carre" type="checkbox" id="carre191"
+      name="radio" /><label onclick="send()" for="carre191" required="required"></label><input class="carre" type="checkbox"
+      id="carre192" name="radio" /><label onclick="send()" for="carre192" required="required"></label><input class="carre"
+      type="checkbox" id="carre193" name="radio" /><label onclick="send()" for="carre193" required="required"></label><input
+      class="carre" type="checkbox" id="carre194" name="radio" /><label onclick="send()" for="carre194"
+      required="required"></label><input class="carre" type="checkbox" id="carre195" name="radio" /><label
+      for="carre195" required="required"></label><input class="carre" type="checkbox" id="carre196"
+      name="radio" /><label onclick="send()" for="carre196" required="required"></label><input class="carre" type="checkbox"
+      id="carre197" name="radio" /><label onclick="send()" for="carre197" required="required"></label><input class="carre"
+      type="checkbox" id="carre198" name="radio" /><label onclick="send()" for="carre198" required="required"></label><input
+      class="carre" type="checkbox" id="carre199" name="radio" /><label onclick="send()" for="carre199"
+      required="required"></label><input class="carre" type="checkbox" id="carre200" name="radio" /><label
+      for="carre200" required="required"></label><input class="carre" type="checkbox" id="carre201"
+      name="radio" /><label onclick="send()" for="carre201" required="required"></label><input class="carre" type="checkbox"
+      id="carre202" name="radio" /><label onclick="send()" for="carre202" required="required"></label><input class="carre"
+      type="checkbox" id="carre203" name="radio" /><label onclick="send()" for="carre203" required="required"></label><input
+      class="carre" type="checkbox" id="carre204" name="radio" /><label onclick="send()" for="carre204"
+      required="required"></label><input class="carre" type="checkbox" id="carre205" name="radio" /><label
+      for="carre205" required="required"></label><input class="carre" type="checkbox" id="carre206"
+      name="radio" /><label onclick="send()" for="carre206" required="required"></label><input class="carre" type="checkbox"
+      id="carre207" name="radio" /><label onclick="send()" for="carre207" required="required"></label><input class="carre"
+      type="checkbox" id="carre208" name="radio" /><label onclick="send()" for="carre208" required="required"></label><input
+      class="carre" type="checkbox" id="carre209" name="radio" /><label onclick="send()" for="carre209"
+      required="required"></label><input class="carre" type="checkbox" id="carre210" name="radio" /><label
+      for="carre210" required="required"></label><input class="carre" type="checkbox" id="carre211"
+      name="radio" /><label onclick="send()" for="carre211" required="required"></label><input class="carre" type="checkbox"
+      id="carre212" name="radio" /><label onclick="send()" for="carre212" required="required"></label><input class="carre"
+      type="checkbox" id="carre213" name="radio" /><label onclick="send()" for="carre213" required="required"></label><input
+      class="carre" type="checkbox" id="carre214" name="radio" /><label onclick="send()" for="carre214"
+      required="required"></label><input class="carre" type="checkbox" id="carre215" name="radio" /><label
+      for="carre215" required="required"></label><input class="carre" type="checkbox" id="carre216"
+      name="radio" /><label onclick="send()" for="carre216" required="required"></label><input class="carre" type="checkbox"
+      id="carre217" name="radio" /><label onclick="send()" for="carre217" required="required"></label><input class="carre"
+      type="checkbox" id="carre218" name="radio" /><label onclick="send()" for="carre218" required="required"></label><input
+      class="carre" type="checkbox" id="carre219" name="radio" /><label onclick="send()" for="carre219"
+      required="required"></label><input class="carre" type="checkbox" id="carre220" name="radio" /><label
+      for="carre220" required="required"></label><input class="carre" type="checkbox" id="carre221"
+      name="radio" /><label onclick="send()" for="carre221" required="required"></label><input class="carre" type="checkbox"
+      id="carre222" name="radio" /><label onclick="send()" for="carre222" required="required"></label><input class="carre"
+      type="checkbox" id="carre223" name="radio" /><label onclick="send()" for="carre223" required="required"></label><input
+      class="carre" type="checkbox" id="carre224" name="radio" /><label onclick="send()" for="carre224"
+      required="required"></label><input class="carre" type="checkbox" id="carre225" name="radio" /><label
+      for="carre225" required="required"></label><input class="carre" type="checkbox" id="carre226"
+      name="radio" /><label onclick="send()" for="carre226" required="required"></label><input class="carre" type="checkbox"
+      id="carre227" name="radio" /><label onclick="send()" for="carre227" required="required"></label><input class="carre"
+      type="checkbox" id="carre228" name="radio" /><label onclick="send()" for="carre228" required="required"></label><input
+      class="carre" type="checkbox" id="carre229" name="radio" /><label onclick="send()" for="carre229"
+      required="required"></label><input class="carre" type="checkbox" id="carre230" name="radio" /><label
+      for="carre230" required="required"></label><input class="carre" type="checkbox" id="carre231"
+      name="radio" /><label onclick="send()" for="carre231" required="required"></label><input class="carre" type="checkbox"
+      id="carre232" name="radio" /><label onclick="send()" for="carre232" required="required"></label><input class="carre"
+      type="checkbox" id="carre233" name="radio" /><label onclick="send()" for="carre233" required="required"></label><input
+      class="carre" type="checkbox" id="carre234" name="radio" /><label onclick="send()" for="carre234"
+      required="required"></label><input class="carre" type="checkbox" id="carre235" name="radio" /><label
+      for="carre235" required="required"></label><input class="carre" type="checkbox" id="carre236"
+      name="radio" /><label onclick="send()" for="carre236" required="required"></label><input class="carre" type="checkbox"
+      id="carre237" name="radio" /><label onclick="send()" for="carre237" required="required"></label><input class="carre"
+      type="checkbox" id="carre238" name="radio" /><label onclick="send()" for="carre238" required="required"></label><input
+      class="carre" type="checkbox" id="carre239" name="radio" /><label onclick="send()" for="carre239"
+      required="required"></label><input class="carre" type="checkbox" id="carre240" name="radio" /><label
+      for="carre240" required="required"></label><input class="carre" type="checkbox" id="carre241"
+      name="radio" /><label onclick="send()" for="carre241" required="required"></label><input class="carre" type="checkbox"
+      id="carre242" name="radio" /><label onclick="send()" for="carre242" required="required"></label><input class="carre"
+      type="checkbox" id="carre243" name="radio" /><label onclick="send()" for="carre243" required="required"></label><input
+      class="carre" type="checkbox" id="carre244" name="radio" /><label onclick="send()" for="carre244"
+      required="required"></label><input class="carre" type="checkbox" id="carre245" name="radio" /><label
+      for="carre245" required="required"></label><input class="carre" type="checkbox" id="carre246"
+      name="radio" /><label onclick="send()" for="carre246" required="required"></label><input class="carre" type="checkbox"
+      id="carre247" name="radio" /><label onclick="send()" for="carre247" required="required"></label><input class="carre"
+      type="checkbox" id="carre248" name="radio" /><label onclick="send()" for="carre248" required="required"></label><input
+      class="carre" type="checkbox" id="carre249" name="radio" /><label onclick="send()" for="carre249"
+      required="required"></label><input class="carre" type="checkbox" id="carre250" name="radio" /><label
+      for="carre250" required="required"></label><input class="carre" type="checkbox" id="carre251"
+      name="radio" /><label onclick="send()" for="carre251" required="required"></label><input class="carre" type="checkbox"
+      id="carre252" name="radio" /><label onclick="send()" for="carre252" required="required"></label><input class="carre"
+      type="checkbox" id="carre253" name="radio" /><label onclick="send()" for="carre253" required="required"></label><input
+      class="carre" type="checkbox" id="carre254" name="radio" /><label onclick="send()" for="carre254"
+      required="required"></label><input class="carre" type="checkbox" id="carre255" name="radio" /><label
+      for="carre255" required="required"></label><input class="carre" type="checkbox" id="carre256"
+      name="radio" /><label onclick="send()" for="carre256" required="required"></label><input class="carre" type="checkbox"
+      id="carre257" name="radio" /><label onclick="send()" for="carre257" required="required"></label><input class="carre"
+      type="checkbox" id="carre258" name="radio" /><label onclick="send()" for="carre258" required="required"></label><input
+      class="carre" type="checkbox" id="carre259" name="radio" /><label onclick="send()" for="carre259"
+      required="required"></label><input class="carre" type="checkbox" id="carre260" name="radio" /><label
+      for="carre260" required="required"></label><input class="carre" type="checkbox" id="carre261"
+      name="radio" /><label onclick="send()" for="carre261" required="required"></label><input class="carre" type="checkbox"
+      id="carre262" name="radio" /><label onclick="send()" for="carre262" required="required"></label><input class="carre"
+      type="checkbox" id="carre263" name="radio" /><label onclick="send()" for="carre263" required="required"></label><input
+      class="carre" type="checkbox" id="carre264" name="radio" /><label onclick="send()" for="carre264"
+      required="required"></label><input class="carre" type="checkbox" id="carre265" name="radio" /><label
+      for="carre265" required="required"></label><input class="carre" type="checkbox" id="carre266"
+      name="radio" /><label onclick="send()" for="carre266" required="required"></label><input class="carre" type="checkbox"
+      id="carre267" name="radio" /><label onclick="send()" for="carre267" required="required"></label><input class="carre"
+      type="checkbox" id="carre268" name="radio" /><label onclick="send()" for="carre268" required="required"></label><input
+      class="carre" type="checkbox" id="carre269" name="radio" /><label onclick="send()" for="carre269"
+      required="required"></label><input class="carre" type="checkbox" id="carre270" name="radio" /><label
+      for="carre270" required="required"></label><input class="carre" type="checkbox" id="carre271"
+      name="radio" /><label onclick="send()" for="carre271" required="required"></label><input class="carre" type="checkbox"
+      id="carre272" name="radio" /><label onclick="send()" for="carre272" required="required"></label><input class="carre"
+      type="checkbox" id="carre273" name="radio" /><label onclick="send()" for="carre273" required="required"></label><input
+      class="carre" type="checkbox" id="carre274" name="radio" /><label onclick="send()" for="carre274"
+      required="required"></label><input class="carre" type="checkbox" id="carre275" name="radio" /><label
+      for="carre275" required="required"></label><input class="carre" type="checkbox" id="carre276"
+      name="radio" /><label onclick="send()" for="carre276" required="required"></label><input class="carre" type="checkbox"
+      id="carre277" name="radio" /><label onclick="send()" for="carre277" required="required"></label><input class="carre"
+      type="checkbox" id="carre278" name="radio" /><label onclick="send()" for="carre278" required="required"></label><input
+      class="carre" type="checkbox" id="carre279" name="radio" /><label onclick="send()" for="carre279"
+      required="required"></label><input class="carre" type="checkbox" id="carre280" name="radio" /><label
+      for="carre280" required="required"></label><input class="carre" type="checkbox" id="carre281"
+      name="radio" /><label onclick="send()" for="carre281" required="required"></label><input class="carre" type="checkbox"
+      id="carre282" name="radio" /><label onclick="send()" for="carre282" required="required"></label><input class="carre"
+      type="checkbox" id="carre283" name="radio" /><label onclick="send()" for="carre283" required="required"></label><input
+      class="carre" type="checkbox" id="carre284" name="radio" /><label onclick="send()" for="carre284"
+      required="required"></label><input class="carre" type="checkbox" id="carre285" name="radio" /><label
+      for="carre285" required="required"></label><input class="carre" type="checkbox" id="carre286"
+      name="radio" /><label onclick="send()" for="carre286" required="required"></label><input class="carre" type="checkbox"
+      id="carre287" name="radio" /><label onclick="send()" for="carre287" required="required"></label><input class="carre"
+      type="checkbox" id="carre288" name="radio" /><label onclick="send()" for="carre288" required="required"></label><input
+      class="carre" type="checkbox" id="carre289" name="radio" /><label onclick="send()" for="carre289"
+      required="required"></label><input class="carre" type="checkbox" id="carre290" name="radio" /><label
+      for="carre290" required="required"></label><input class="carre" type="checkbox" id="carre291"
+      name="radio" /><label onclick="send()" for="carre291" required="required"></label><input class="carre" type="checkbox"
+      id="carre292" name="radio" /><label onclick="send()" for="carre292" required="required"></label><input class="carre"
+      type="checkbox" id="carre293" name="radio" /><label onclick="send()" for="carre293" required="required"></label><input
+      class="carre" type="checkbox" id="carre294" name="radio" /><label onclick="send()" for="carre294"
+      required="required"></label><input class="carre" type="checkbox" id="carre295" name="radio" /><label
+      for="carre295" required="required"></label><input class="carre" type="checkbox" id="carre296"
+      name="radio" /><label onclick="send()" for="carre296" required="required"></label><input class="carre" type="checkbox"
+      id="carre297" name="radio" /><label onclick="send()" for="carre297" required="required"></label><input class="carre"
+      type="checkbox" id="carre298" name="radio" /><label onclick="send()" for="carre298" required="required"></label><input
+      class="carre" type="checkbox" id="carre299" name="radio" /><label onclick="send()" for="carre299"
+      required="required"></label><input class="carre" type="checkbox" id="carre300" name="radio" /><label
+      for="carre300" required="required"></label><input class="carre" type="checkbox" id="carre301"
+      name="radio" /><label onclick="send()" for="carre301" required="required"></label><input class="carre" type="checkbox"
+      id="carre302" name="radio" /><label onclick="send()" for="carre302" required="required"></label><input class="carre"
+      type="checkbox" id="carre303" name="radio" /><label onclick="send()" for="carre303" required="required"></label><input
+      class="carre" type="checkbox" id="carre304" name="radio" /><label onclick="send()" for="carre304"
+      required="required"></label><input class="carre" type="checkbox" id="carre305" name="radio" /><label
+      for="carre305" required="required"></label><input class="carre" type="checkbox" id="carre306"
+      name="radio" /><label onclick="send()" for="carre306" required="required"></label><input class="carre" type="checkbox"
+      id="carre307" name="radio" /><label onclick="send()" for="carre307" required="required"></label><input class="carre"
+      type="checkbox" id="carre308" name="radio" /><label onclick="send()" for="carre308" required="required"></label><input
+      class="carre" type="checkbox" id="carre309" name="radio" /><label onclick="send()" for="carre309"
+      required="required"></label><input class="carre" type="checkbox" id="carre310" name="radio" /><label
+      for="carre310" required="required"></label><input class="carre" type="checkbox" id="carre311"
+      name="radio" /><label onclick="send()" for="carre311" required="required"></label><input class="carre" type="checkbox"
+      id="carre312" name="radio" /><label onclick="send()" for="carre312" required="required"></label><input class="carre"
+      type="checkbox" id="carre313" name="radio" /><label onclick="send()" for="carre313" required="required"></label><input
+      class="carre" type="checkbox" id="carre314" name="radio" /><label onclick="send()" for="carre314"
+      required="required"></label><input class="carre" type="checkbox" id="carre315" name="radio" /><label
+      for="carre315" required="required"></label><input class="carre" type="checkbox" id="carre316"
+      name="radio" /><label onclick="send()" for="carre316" required="required"></label><input class="carre" type="checkbox"
+      id="carre317" name="radio" /><label onclick="send()" for="carre317" required="required"></label><input class="carre"
+      type="checkbox" id="carre318" name="radio" /><label onclick="send()" for="carre318" required="required"></label><input
+      class="carre" type="checkbox" id="carre319" name="radio" /><label onclick="send()" for="carre319"
+      required="required"></label><input class="carre" type="checkbox" id="carre320" name="radio" /><label
+      for="carre320" required="required"></label><input class="carre" type="checkbox" id="carre321"
+      name="radio" /><label onclick="send()" for="carre321" required="required"></label><input class="carre" type="checkbox"
+      id="carre322" name="radio" /><label onclick="send()" for="carre322" required="required"></label><input class="carre"
+      type="checkbox" id="carre323" name="radio" /><label onclick="send()" for="carre323" required="required"></label><input
+      class="carre" type="checkbox" id="carre324" name="radio" /><label onclick="send()" for="carre324"
+      required="required"></label><input class="carre" type="checkbox" id="carre325" name="radio" /><label
+      for="carre325" required="required"></label><input class="carre" type="checkbox" id="carre326"
+      name="radio" /><label onclick="send()" for="carre326" required="required"></label><input class="carre" type="checkbox"
+      id="carre327" name="radio" /><label onclick="send()" for="carre327" required="required"></label><input class="carre"
+      type="checkbox" id="carre328" name="radio" /><label onclick="send()" for="carre328" required="required"></label><input
+      class="carre" type="checkbox" id="carre329" name="radio" /><label onclick="send()" for="carre329"
+      required="required"></label><input class="carre" type="checkbox" id="carre330" name="radio" /><label
+      for="carre330" required="required"></label><input class="carre" type="checkbox" id="carre331"
+      name="radio" /><label onclick="send()" for="carre331" required="required"></label><input class="carre" type="checkbox"
+      id="carre332" name="radio" /><label onclick="send()" for="carre332" required="required"></label><input class="carre"
+      type="checkbox" id="carre333" name="radio" /><label onclick="send()" for="carre333" required="required"></label><input
+      class="carre" type="checkbox" id="carre334" name="radio" /><label onclick="send()" for="carre334"
+      required="required"></label><input class="carre" type="checkbox" id="carre335" name="radio" /><label
+      for="carre335" required="required"></label><input class="carre" type="checkbox" id="carre336"
+      name="radio" /><label onclick="send()" for="carre336" required="required"></label><input class="carre" type="checkbox"
+      id="carre337" name="radio" /><label onclick="send()" for="carre337" required="required"></label><input class="carre"
+      type="checkbox" id="carre338" name="radio" /><label onclick="send()" for="carre338" required="required"></label><input
+      class="carre" type="checkbox" id="carre339" name="radio" /><label onclick="send()" for="carre339"
+      required="required"></label><input class="carre" type="checkbox" id="carre340" name="radio" /><label
+      for="carre340" required="required"></label><input class="carre" type="checkbox" id="carre341"
+      name="radio" /><label onclick="send()" for="carre341" required="required"></label><input class="carre" type="checkbox"
+      id="carre342" name="radio" /><label onclick="send()" for="carre342" required="required"></label><input class="carre"
+      type="checkbox" id="carre343" name="radio" /><label onclick="send()" for="carre343" required="required"></label><input
+      class="carre" type="checkbox" id="carre344" name="radio" /><label onclick="send()" for="carre344"
+      required="required"></label><input class="carre" type="checkbox" id="carre345" name="radio" /><label
+      for="carre345" required="required"></label><input class="carre" type="checkbox" id="carre346"
+      name="radio" /><label onclick="send()" for="carre346" required="required"></label><input class="carre" type="checkbox"
+      id="carre347" name="radio" /><label onclick="send()" for="carre347" required="required"></label><input class="carre"
+      type="checkbox" id="carre348" name="radio" /><label onclick="send()" for="carre348" required="required"></label><input
+      class="carre" type="checkbox" id="carre349" name="radio" /><label onclick="send()" for="carre349"
+      required="required"></label><input class="carre" type="checkbox" id="carre350" name="radio" /><label
+      for="carre350" required="required"></label><input class="carre" type="checkbox" id="carre351"
+      name="radio" /><label onclick="send()" for="carre351" required="required"></label><input class="carre" type="checkbox"
+      id="carre352" name="radio" /><label onclick="send()" for="carre352" required="required"></label><input class="carre"
+      type="checkbox" id="carre353" name="radio" /><label onclick="send()" for="carre353" required="required"></label><input
+      class="carre" type="checkbox" id="carre354" name="radio" /><label onclick="send()" for="carre354"
+      required="required"></label><input class="carre" type="checkbox" id="carre355" name="radio" /><label
+      for="carre355" required="required"></label><input class="carre" type="checkbox" id="carre356"
+      name="radio" /><label onclick="send()" for="carre356" required="required"></label><input class="carre" type="checkbox"
+      id="carre357" name="radio" /><label onclick="send()" for="carre357" required="required"></label><input class="carre"
+      type="checkbox" id="carre358" name="radio" /><label onclick="send()" for="carre358" required="required"></label><input
+      class="carre" type="checkbox" id="carre359" name="radio" /><label onclick="send()" for="carre359"
+      required="required"></label><input class="carre" type="checkbox" id="carre360" name="radio" /><label
+      for="carre360" required="required"></label><input class="carre" type="checkbox" id="carre361"
+      name="radio" /><label onclick="send()" for="carre361" required="required"></label><input class="carre" type="checkbox"
+      id="carre362" name="radio" /><label onclick="send()" for="carre362" required="required"></label><input class="carre"
+      type="checkbox" id="carre363" name="radio" /><label onclick="send()" for="carre363" required="required"></label><input
+      class="carre" type="checkbox" id="carre364" name="radio" /><label onclick="send()" for="carre364"
+      required="required"></label><input class="carre" type="checkbox" id="carre365" name="radio" /><label
+      for="carre365" required="required"></label><input class="carre" type="checkbox" id="carre366"
+      name="radio" /><label onclick="send()" for="carre366" required="required"></label><input class="carre" type="checkbox"
+      id="carre367" name="radio" /><label onclick="send()" for="carre367" required="required"></label><input class="carre"
+      type="checkbox" id="carre368" name="radio" /><label onclick="send()" for="carre368" required="required"></label><input
+      class="carre" type="checkbox" id="carre369" name="radio" /><label onclick="send()" for="carre369"
+      required="required"></label><input class="carre" type="checkbox" id="carre370" name="radio" /><label
+      for="carre370" required="required"></label><input class="carre" type="checkbox" id="carre371"
+      name="radio" /><label onclick="send()" for="carre371" required="required"></label><input class="carre" type="checkbox"
+      id="carre372" name="radio" /><label onclick="send()" for="carre372" required="required"></label><input class="carre"
+      type="checkbox" id="carre373" name="radio" /><label onclick="send()" for="carre373" required="required"></label><input
+      class="carre" type="checkbox" id="carre374" name="radio" /><label onclick="send()" for="carre374"
+      required="required"></label><input class="carre" type="checkbox" id="carre375" name="radio" /><label
+      for="carre375" required="required"></label><input class="carre" type="checkbox" id="carre376"
+      name="radio" /><label onclick="send()" for="carre376" required="required"></label><input class="carre" type="checkbox"
+      id="carre377" name="radio" /><label onclick="send()" for="carre377" required="required"></label><input class="carre"
+      type="checkbox" id="carre378" name="radio" /><label onclick="send()" for="carre378" required="required"></label><input
+      class="carre" type="checkbox" id="carre379" name="radio" /><label onclick="send()" for="carre379"
+      required="required"></label><input class="carre" type="checkbox" id="carre380" name="radio" /><label
+      for="carre380" required="required"></label><input class="carre" type="checkbox" id="carre381"
+      name="radio" /><label onclick="send()" for="carre381" required="required"></label><input class="carre" type="checkbox"
+      id="carre382" name="radio" /><label onclick="send()" for="carre382" required="required"></label><input class="carre"
+      type="checkbox" id="carre383" name="radio" /><label onclick="send()" for="carre383" required="required"></label><input
+      class="carre" type="checkbox" id="carre384" name="radio" /><label onclick="send()" for="carre384"
+      required="required"></label><input class="carre" type="checkbox" id="carre385" name="radio" /><label
+      for="carre385" required="required"></label><input class="carre" type="checkbox" id="carre386"
+      name="radio" /><label onclick="send()" for="carre386" required="required"></label><input class="carre" type="checkbox"
+      id="carre387" name="radio" /><label onclick="send()" for="carre387" required="required"></label><input class="carre"
+      type="checkbox" id="carre388" name="radio" /><label onclick="send()" for="carre388" required="required"></label><input
+      class="carre" type="checkbox" id="carre389" name="radio" /><label onclick="send()" for="carre389"
+      required="required"></label><input class="carre" type="checkbox" id="carre390" name="radio" /><label
+      for="carre390" required="required"></label><input class="carre" type="checkbox" id="carre391"
+      name="radio" /><label onclick="send()" for="carre391" required="required"></label><input class="carre" type="checkbox"
+      id="carre392" name="radio" /><label onclick="send()" for="carre392" required="required"></label><input class="carre"
+      type="checkbox" id="carre393" name="radio" /><label onclick="send()" for="carre393" required="required"></label><input
+      class="carre" type="checkbox" id="carre394" name="radio" /><label onclick="send()" for="carre394"
+      required="required"></label><input class="carre" type="checkbox" id="carre395" name="radio" /><label
+      for="carre395" required="required"></label><input class="carre" type="checkbox" id="carre396"
+      name="radio" /><label onclick="send()" for="carre396" required="required"></label><input class="carre" type="checkbox"
+      id="carre397" name="radio" /><label onclick="send()" for="carre397" required="required"></label><input class="carre"
+      type="checkbox" id="carre398" name="radio" /><label onclick="send()" for="carre398" required="required"></label><input
+      class="carre" type="checkbox" id="carre399" name="radio" /><label onclick="send()" for="carre399"
+      required="required"></label><input class="carre" type="checkbox" id="carre400" name="radio" /><label
+      for="carre400" required="required"></label><input class="carre" type="checkbox" id="carre401"
+      name="radio" /><label onclick="send()" for="carre401" required="required"></label><input class="carre" type="checkbox"
+      id="carre402" name="radio" /><label onclick="send()" for="carre402" required="required"></label><input class="carre"
+      type="checkbox" id="carre403" name="radio" /><label onclick="send()" for="carre403" required="required"></label><input
+      class="carre" type="checkbox" id="carre404" name="radio" /><label onclick="send()" for="carre404"
+      required="required"></label><input class="carre" type="checkbox" id="carre405" name="radio" /><label
+      for="carre405" required="required"></label><input class="carre" type="checkbox" id="carre406"
+      name="radio" /><label onclick="send()" for="carre406" required="required"></label><input class="carre" type="checkbox"
+      id="carre407" name="radio" /><label onclick="send()" for="carre407" required="required"></label><input class="carre"
+      type="checkbox" id="carre408" name="radio" /><label onclick="send()" for="carre408" required="required"></label><input
+      class="carre" type="checkbox" id="carre409" name="radio" /><label onclick="send()" for="carre409"
+      required="required"></label><input class="carre" type="checkbox" id="carre410" name="radio" /><label
+      for="carre410" required="required"></label><input class="carre" type="checkbox" id="carre411"
+      name="radio" /><label onclick="send()" for="carre411" required="required"></label><input class="carre" type="checkbox"
+      id="carre412" name="radio" /><label onclick="send()" for="carre412" required="required"></label><input class="carre"
+      type="checkbox" id="carre413" name="radio" /><label onclick="send()" for="carre413" required="required"></label><input
+      class="carre" type="checkbox" id="carre414" name="radio" /><label onclick="send()" for="carre414"
+      required="required"></label><input class="carre" type="checkbox" id="carre415" name="radio" /><label
+      for="carre415" required="required"></label><input class="carre" type="checkbox" id="carre416"
+      name="radio" /><label onclick="send()" for="carre416" required="required"></label><input class="carre" type="checkbox"
+      id="carre417" name="radio" /><label onclick="send()" for="carre417" required="required"></label><input class="carre"
+      type="checkbox" id="carre418" name="radio" /><label onclick="send()" for="carre418" required="required"></label><input
+      class="carre" type="checkbox" id="carre419" name="radio" /><label onclick="send()" for="carre419"
+      required="required"></label><input class="carre" type="checkbox" id="carre420" name="radio" /><label
+      for="carre420" required="required"></label><input class="carre" type="checkbox" id="carre421"
+      name="radio" /><label onclick="send()" for="carre421" required="required"></label><input class="carre" type="checkbox"
+      id="carre422" name="radio" /><label onclick="send()" for="carre422" required="required"></label><input class="carre"
+      type="checkbox" id="carre423" name="radio" /><label onclick="send()" for="carre423" required="required"></label><input
+      class="carre" type="checkbox" id="carre424" name="radio" /><label onclick="send()" for="carre424"
+      required="required"></label><input class="carre" type="checkbox" id="carre425" name="radio" /><label
+      for="carre425" required="required"></label><input class="carre" type="checkbox" id="carre426"
+      name="radio" /><label onclick="send()" for="carre426" required="required"></label><input class="carre" type="checkbox"
+      id="carre427" name="radio" /><label onclick="send()" for="carre427" required="required"></label><input class="carre"
+      type="checkbox" id="carre428" name="radio" /><label onclick="send()" for="carre428" required="required"></label><input
+      class="carre" type="checkbox" id="carre429" name="radio" /><label onclick="send()" for="carre429"
+      required="required"></label><input class="carre" type="checkbox" id="carre430" name="radio" /><label
+      for="carre430" required="required"></label><input class="carre" type="checkbox" id="carre431"
+      name="radio" /><label onclick="send()" for="carre431" required="required"></label><input class="carre" type="checkbox"
+      id="carre432" name="radio" /><label onclick="send()" for="carre432" required="required"></label><input class="carre"
+      type="checkbox" id="carre433" name="radio" /><label onclick="send()" for="carre433" required="required"></label><input
+      class="carre" type="checkbox" id="carre434" name="radio" /><label onclick="send()" for="carre434"
+      required="required"></label><input class="carre" type="checkbox" id="carre435" name="radio" /><label
+      for="carre435" required="required"></label><input class="carre" type="checkbox" id="carre436"
+      name="radio" /><label onclick="send()" for="carre436" required="required"></label><input class="carre" type="checkbox"
+      id="carre437" name="radio" /><label onclick="send()" for="carre437" required="required"></label><input class="carre"
+      type="checkbox" id="carre438" name="radio" /><label onclick="send()" for="carre438" required="required"></label><input
+      class="carre" type="checkbox" id="carre439" name="radio" /><label onclick="send()" for="carre439"
+      required="required"></label><input class="carre" type="checkbox" id="carre440" name="radio" /><label
+      for="carre440" required="required"></label><input class="carre" type="checkbox" id="carre441"
+      name="radio" /><label onclick="send()" for="carre441" required="required"></label><input class="carre" type="checkbox"
+      id="carre442" name="radio" /><label onclick="send()" for="carre442" required="required"></label><input class="carre"
+      type="checkbox" id="carre443" name="radio" /><label onclick="send()" for="carre443" required="required"></label><input
+      class="carre" type="checkbox" id="carre444" name="radio" /><label onclick="send()" for="carre444"
+      required="required"></label><input class="carre" type="checkbox" id="carre445" name="radio" /><label
+      for="carre445" required="required"></label><input class="carre" type="checkbox" id="carre446"
+      name="radio" /><label onclick="send()" for="carre446" required="required"></label><input class="carre" type="checkbox"
+      id="carre447" name="radio" /><label onclick="send()" for="carre447" required="required"></label><input class="carre"
+      type="checkbox" id="carre448" name="radio" /><label onclick="send()" for="carre448" required="required"></label><input
+      class="carre" type="checkbox" id="carre449" name="radio" /><label onclick="send()" for="carre449"
+      required="required"></label><input class="carre" type="checkbox" id="carre450" name="radio" /><label
+      for="carre450" required="required"></label><input class="carre" type="checkbox" id="carre451"
+      name="radio" /><label onclick="send()" for="carre451" required="required"></label><input class="carre" type="checkbox"
+      id="carre452" name="radio" /><label onclick="send()" for="carre452" required="required"></label><input class="carre"
+      type="checkbox" id="carre453" name="radio" /><label onclick="send()" for="carre453" required="required"></label><input
+      class="carre" type="checkbox" id="carre454" name="radio" /><label onclick="send()" for="carre454"
+      required="required"></label><input class="carre" type="checkbox" id="carre455" name="radio" /><label
+      for="carre455" required="required"></label><input class="carre" type="checkbox" id="carre456"
+      name="radio" /><label onclick="send()" for="carre456" required="required"></label><input class="carre" type="checkbox"
+      id="carre457" name="radio" /><label onclick="send()" for="carre457" required="required"></label><input class="carre"
+      type="checkbox" id="carre458" name="radio" /><label onclick="send()" for="carre458" required="required"></label><input
+      class="carre" type="checkbox" id="carre459" name="radio" /><label onclick="send()" for="carre459"
+      required="required"></label><input class="carre" type="checkbox" id="carre460" name="radio" /><label
+      for="carre460" required="required"></label><input class="carre" type="checkbox" id="carre461"
+      name="radio" /><label onclick="send()" for="carre461" required="required"></label><input class="carre" type="checkbox"
+      id="carre462" name="radio" /><label onclick="send()" for="carre462" required="required"></label><input class="carre"
+      type="checkbox" id="carre463" name="radio" /><label onclick="send()" for="carre463" required="required"></label><input
+      class="carre" type="checkbox" id="carre464" name="radio" /><label onclick="send()" for="carre464"
+      required="required"></label><input class="carre" type="checkbox" id="carre465" name="radio" /><label
+      for="carre465" required="required"></label><input class="carre" type="checkbox" id="carre466"
+      name="radio" /><label onclick="send()" for="carre466" required="required"></label><input class="carre" type="checkbox"
+      id="carre467" name="radio" /><label onclick="send()" for="carre467" required="required"></label><input class="carre"
+      type="checkbox" id="carre468" name="radio" /><label onclick="send()" for="carre468" required="required"></label><input
+      class="carre" type="checkbox" id="carre469" name="radio" /><label onclick="send()" for="carre469"
+      required="required"></label><input class="carre" type="checkbox" id="carre470" name="radio" /><label
+      for="carre470" required="required"></label><input class="carre" type="checkbox" id="carre471"
+      name="radio" /><label onclick="send()" for="carre471" required="required"></label><input class="carre" type="checkbox"
+      id="carre472" name="radio" /><label onclick="send()" for="carre472" required="required"></label><input class="carre"
+      type="checkbox" id="carre473" name="radio" /><label onclick="send()" for="carre473" required="required"></label><input
+      class="carre" type="checkbox" id="carre474" name="radio" /><label onclick="send()" for="carre474"
+      required="required"></label><input class="carre" type="checkbox" id="carre475" name="radio" /><label
+      for="carre475" required="required"></label><input class="carre" type="checkbox" id="carre476"
+      name="radio" /><label onclick="send()" for="carre476" required="required"></label><input class="carre" type="checkbox"
+      id="carre477" name="radio" /><label onclick="send()" for="carre477" required="required"></label><input class="carre"
+      type="checkbox" id="carre478" name="radio" /><label onclick="send()" for="carre478" required="required"></label><input
+      class="carre" type="checkbox" id="carre479" name="radio" /><label onclick="send()" for="carre479"
+      required="required"></label><input class="carre" type="checkbox" id="carre480" name="radio" /><label
+      for="carre480" required="required"></label><input class="carre" type="checkbox" id="carre481"
+      name="radio" /><label onclick="send()" for="carre481" required="required"></label><input class="carre" type="checkbox"
+      id="carre482" name="radio" /><label onclick="send()" for="carre482" required="required"></label><input class="carre"
+      type="checkbox" id="carre483" name="radio" /><label onclick="send()" for="carre483" required="required"></label><input
+      class="carre" type="checkbox" id="carre484" name="radio" /><label onclick="send()" for="carre484"
+      required="required"></label><input class="carre" type="checkbox" id="carre485" name="radio" /><label
+      for="carre485" required="required"></label><input class="carre" type="checkbox" id="carre486"
+      name="radio" /><label onclick="send()" for="carre486" required="required"></label><input class="carre" type="checkbox"
+      id="carre487" name="radio" /><label onclick="send()" for="carre487" required="required"></label><input class="carre"
+      type="checkbox" id="carre488" name="radio" /><label onclick="send()" for="carre488" required="required"></label><input
+      class="carre" type="checkbox" id="carre489" name="radio" /><label onclick="send()" for="carre489"
+      required="required"></label><input class="carre" type="checkbox" id="carre490" name="radio" /><label
+      for="carre490" required="required"></label><input class="carre" type="checkbox" id="carre491"
+      name="radio" /><label onclick="send()" for="carre491" required="required"></label><input class="carre" type="checkbox"
+      id="carre492" name="radio" /><label onclick="send()" for="carre492" required="required"></label><input class="carre"
+      type="checkbox" id="carre493" name="radio" /><label onclick="send()" for="carre493" required="required"></label><input
+      class="carre" type="checkbox" id="carre494" name="radio" /><label onclick="send()" for="carre494"
+      required="required"></label><input class="carre" type="checkbox" id="carre495" name="radio" /><label
+      for="carre495" required="required"></label><input class="carre" type="checkbox" id="carre496"
+      name="radio" /><label onclick="send()" for="carre496" required="required"></label><input class="carre" type="checkbox"
+      id="carre497" name="radio" /><label onclick="send()" for="carre497" required="required"></label><input class="carre"
+      type="checkbox" id="carre498" name="radio" /><label onclick="send()" for="carre498" required="required"></label><input
+      class="carre" type="checkbox" id="carre499" name="radio" /><label onclick="send()" for="carre499"
+      required="required"></label><input class="carre" type="checkbox" id="carre500" name="radio" /><label
+      for="carre500" required="required"></label><input class="carre" type="checkbox" id="carre501"
+      name="radio" /><label onclick="send()" for="carre501" required="required"></label><input class="carre" type="checkbox"
+      id="carre502" name="radio" /><label onclick="send()" for="carre502" required="required"></label><input class="carre"
+      type="checkbox" id="carre503" name="radio" /><label onclick="send()" for="carre503" required="required"></label><input
+      class="carre" type="checkbox" id="carre504" name="radio" /><label onclick="send()" for="carre504"
+      required="required"></label><input class="carre" type="checkbox" id="carre505" name="radio" /><label
+      for="carre505" required="required"></label><input class="carre" type="checkbox" id="carre506"
+      name="radio" /><label onclick="send()" for="carre506" required="required"></label><input class="carre" type="checkbox"
+      id="carre507" name="radio" /><label onclick="send()" for="carre507" required="required"></label><input class="carre"
+      type="checkbox" id="carre508" name="radio" /><label onclick="send()" for="carre508" required="required"></label><input
+      class="carre" type="checkbox" id="carre509" name="radio" /><label onclick="send()" for="carre509"
+      required="required"></label><input class="carre" type="checkbox" id="carre510" name="radio" /><label
+      for="carre510" required="required"></label><input class="carre" type="checkbox" id="carre511"
+      name="radio" /><label onclick="send()" for="carre511" required="required"></label><input class="carre" type="checkbox"
+      id="carre512" name="radio" /><label onclick="send()" for="carre512" required="required"></label><input class="carre"
+      type="checkbox" id="carre513" name="radio" /><label onclick="send()" for="carre513" required="required"></label><input
+      class="carre" type="checkbox" id="carre514" name="radio" /><label onclick="send()" for="carre514"
+      required="required"></label><input class="carre" type="checkbox" id="carre515" name="radio" /><label
+      for="carre515" required="required"></label><input class="carre" type="checkbox" id="carre516"
+      name="radio" /><label onclick="send()" for="carre516" required="required"></label><input class="carre" type="checkbox"
+      id="carre517" name="radio" /><label onclick="send()" for="carre517" required="required"></label><input class="carre"
+      type="checkbox" id="carre518" name="radio" /><label onclick="send()" for="carre518" required="required"></label><input
+      class="carre" type="checkbox" id="carre519" name="radio" /><label onclick="send()" for="carre519"
+      required="required"></label><input class="carre" type="checkbox" id="carre520" name="radio" /><label
+      for="carre520" required="required"></label><input class="carre" type="checkbox" id="carre521"
+      name="radio" /><label onclick="send()" for="carre521" required="required"></label><input class="carre" type="checkbox"
+      id="carre522" name="radio" /><label onclick="send()" for="carre522" required="required"></label><input class="carre"
+      type="checkbox" id="carre523" name="radio" /><label onclick="send()" for="carre523" required="required"></label><input
+      class="carre" type="checkbox" id="carre524" name="radio" /><label onclick="send()" for="carre524"
+      required="required"></label><input class="carre" type="checkbox" id="carre525" name="radio" /><label
+      for="carre525" required="required"></label><input class="carre" type="checkbox" id="carre526"
+      name="radio" /><label onclick="send()" for="carre526" required="required"></label><input class="carre" type="checkbox"
+      id="carre527" name="radio" /><label onclick="send()" for="carre527" required="required"></label><input class="carre"
+      type="checkbox" id="carre528" name="radio" /><label onclick="send()" for="carre528" required="required"></label><input
+      class="carre" type="checkbox" id="carre529" name="radio" /><label onclick="send()" for="carre529"
+      required="required"></label><input class="carre" type="checkbox" id="carre530" name="radio" /><label
+      for="carre530" required="required"></label><input class="carre" type="checkbox" id="carre531"
+      name="radio" /><label onclick="send()" for="carre531" required="required"></label><input class="carre" type="checkbox"
+      id="carre532" name="radio" /><label onclick="send()" for="carre532" required="required"></label><input class="carre"
+      type="checkbox" id="carre533" name="radio" /><label onclick="send()" for="carre533" required="required"></label><input
+      class="carre" type="checkbox" id="carre534" name="radio" /><label onclick="send()" for="carre534"
+      required="required"></label><input class="carre" type="checkbox" id="carre535" name="radio" /><label
+      for="carre535" required="required"></label><input class="carre" type="checkbox" id="carre536"
+      name="radio" /><label onclick="send()" for="carre536" required="required"></label><input class="carre" type="checkbox"
+      id="carre537" name="radio" /><label onclick="send()" for="carre537" required="required"></label><input class="carre"
+      type="checkbox" id="carre538" name="radio" /><label onclick="send()" for="carre538" required="required"></label><input
+      class="carre" type="checkbox" id="carre539" name="radio" /><label onclick="send()" for="carre539"
+      required="required"></label><input class="carre" type="checkbox" id="carre540" name="radio" /><label
+      for="carre540" required="required"></label><input class="carre" type="checkbox" id="carre541"
+      name="radio" /><label onclick="send()" for="carre541" required="required"></label><input class="carre" type="checkbox"
+      id="carre542" name="radio" /><label onclick="send()" for="carre542" required="required"></label><input class="carre"
+      type="checkbox" id="carre543" name="radio" /><label onclick="send()" for="carre543" required="required"></label><input
+      class="carre" type="checkbox" id="carre544" name="radio" /><label onclick="send()" for="carre544"
+      required="required"></label><input class="carre" type="checkbox" id="carre545" name="radio" /><label
+      for="carre545" required="required"></label><input class="carre" type="checkbox" id="carre546"
+      name="radio" /><label onclick="send()" for="carre546" required="required"></label><input class="carre" type="checkbox"
+      id="carre547" name="radio" /><label onclick="send()" for="carre547" required="required"></label><input class="carre"
+      type="checkbox" id="carre548" name="radio" /><label onclick="send()" for="carre548" required="required"></label><input
+      class="carre" type="checkbox" id="carre549" name="radio" /><label onclick="send()" for="carre549"
+      required="required"></label><input class="carre" type="checkbox" id="carre550" name="radio" /><label
+      for="carre550" required="required"></label><input class="carre" type="checkbox" id="carre551"
+      name="radio" /><label onclick="send()" for="carre551" required="required"></label><input class="carre" type="checkbox"
+      id="carre552" name="radio" /><label onclick="send()" for="carre552" required="required"></label><input class="carre"
+      type="checkbox" id="carre553" name="radio" /><label onclick="send()" for="carre553" required="required"></label><input
+      class="carre" type="checkbox" id="carre554" name="radio" /><label onclick="send()" for="carre554"
+      required="required"></label><input class="carre" type="checkbox" id="carre555" name="radio" /><label
+      for="carre555" required="required"></label><input class="carre" type="checkbox" id="carre556"
+      name="radio" /><label onclick="send()" for="carre556" required="required"></label><input class="carre" type="checkbox"
+      id="carre557" name="radio" /><label onclick="send()" for="carre557" required="required"></label><input class="carre"
+      type="checkbox" id="carre558" name="radio" /><label onclick="send()" for="carre558" required="required"></label><input
+      class="carre" type="checkbox" id="carre559" name="radio" /><label onclick="send()" for="carre559"
+      required="required"></label><input class="carre" type="checkbox" id="carre560" name="radio" /><label
+      for="carre560" required="required"></label><input class="carre" type="checkbox" id="carre561"
+      name="radio" /><label onclick="send()" for="carre561" required="required"></label><input class="carre" type="checkbox"
+      id="carre562" name="radio" /><label onclick="send()" for="carre562" required="required"></label><input class="carre"
+      type="checkbox" id="carre563" name="radio" /><label onclick="send()" for="carre563" required="required"></label><input
+      class="carre" type="checkbox" id="carre564" name="radio" /><label onclick="send()" for="carre564"
+      required="required"></label><input class="carre" type="checkbox" id="carre565" name="radio" /><label
+      for="carre565" required="required"></label><input class="carre" type="checkbox" id="carre566"
+      name="radio" /><label onclick="send()" for="carre566" required="required"></label><input class="carre" type="checkbox"
+      id="carre567" name="radio" /><label onclick="send()" for="carre567" required="required"></label><input class="carre"
+      type="checkbox" id="carre568" name="radio" /><label onclick="send()" for="carre568" required="required"></label><input
+      class="carre" type="checkbox" id="carre569" name="radio" /><label onclick="send()" for="carre569"
+      required="required"></label><input class="carre" type="checkbox" id="carre570" name="radio" /><label
+      for="carre570" required="required"></label><input class="carre" type="checkbox" id="carre571"
+      name="radio" /><label onclick="send()" for="carre571" required="required"></label><input class="carre" type="checkbox"
+      id="carre572" name="radio" /><label onclick="send()" for="carre572" required="required"></label><input class="carre"
+      type="checkbox" id="carre573" name="radio" /><label onclick="send()" for="carre573" required="required"></label><input
+      class="carre" type="checkbox" id="carre574" name="radio" /><label onclick="send()" for="carre574"
+      required="required"></label><input class="carre" type="checkbox" id="carre575" name="radio" /><label
+      for="carre575" required="required"></label><input class="carre" type="checkbox" id="carre576"
+      name="radio" /><label onclick="send()" for="carre576" required="required"></label><input class="carre" type="checkbox"
+      id="carre577" name="radio" /><label onclick="send()" for="carre577" required="required"></label><input class="carre"
+      type="checkbox" id="carre578" name="radio" /><label onclick="send()" for="carre578" required="required"></label><input
+      class="carre" type="checkbox" id="carre579" name="radio" /><label onclick="send()" for="carre579"
+      required="required"></label><input class="carre" type="checkbox" id="carre580" name="radio" /><label
+      for="carre580" required="required"></label><input class="carre" type="checkbox" id="carre581"
+      name="radio" /><label onclick="send()" for="carre581" required="required"></label><input class="carre" type="checkbox"
+      id="carre582" name="radio" /><label onclick="send()" for="carre582" required="required"></label><input class="carre"
+      type="checkbox" id="carre583" name="radio" /><label onclick="send()" for="carre583" required="required"></label><input
+      class="carre" type="checkbox" id="carre584" name="radio" /><label onclick="send()" for="carre584"
+      required="required"></label><input class="carre" type="checkbox" id="carre585" name="radio" /><label
+      for="carre585" required="required"></label><input class="carre" type="checkbox" id="carre586"
+      name="radio" /><label onclick="send()" for="carre586" required="required"></label><input class="carre" type="checkbox"
+      id="carre587" name="radio" /><label onclick="send()" for="carre587" required="required"></label><input class="carre"
+      type="checkbox" id="carre588" name="radio" /><label onclick="send()" for="carre588" required="required"></label><input
+      class="carre" type="checkbox" id="carre589" name="radio" /><label onclick="send()" for="carre589"
+      required="required"></label><input class="carre" type="checkbox" id="carre590" name="radio" /><label
+      for="carre590" required="required"></label><input class="carre" type="checkbox" id="carre591"
+      name="radio" /><label onclick="send()" for="carre591" required="required"></label><input class="carre" type="checkbox"
+      id="carre592" name="radio" /><label onclick="send()" for="carre592" required="required"></label><input class="carre"
+      type="checkbox" id="carre593" name="radio" /><label onclick="send()" for="carre593" required="required"></label><input
+      class="carre" type="checkbox" id="carre594" name="radio" /><label onclick="send()" for="carre594"
+      required="required"></label><input class="carre" type="checkbox" id="carre595" name="radio" /><label
+      for="carre595" required="required"></label><input class="carre" type="checkbox" id="carre596"
+      name="radio" /><label onclick="send()" for="carre596" required="required"></label><input class="carre" type="checkbox"
+      id="carre597" name="radio" /><label onclick="send()" for="carre597" required="required"></label><input class="carre"
+      type="checkbox" id="carre598" name="radio" /><label onclick="send()" for="carre598" required="required"></label><input
+      class="carre" type="checkbox" id="carre599" name="radio" /><label onclick="send()" for="carre599"
+      required="required"></label><input class="carre" type="checkbox" id="carre600" name="radio" /><label
+      for="carre600" required="required"></label><input class="carre" type="checkbox" id="carre601"
+      name="radio" /><label onclick="send()" for="carre601" required="required"></label><input class="carre" type="checkbox"
+      id="carre602" name="radio" /><label onclick="send()" for="carre602" required="required"></label><input class="carre"
+      type="checkbox" id="carre603" name="radio" /><label onclick="send()" for="carre603" required="required"></label><input
+      class="carre" type="checkbox" id="carre604" name="radio" /><label onclick="send()" for="carre604"
+      required="required"></label><input class="carre" type="checkbox" id="carre605" name="radio" /><label
+      for="carre605" required="required"></label><input class="carre" type="checkbox" id="carre606"
+      name="radio" /><label onclick="send()" for="carre606" required="required"></label><input class="carre" type="checkbox"
+      id="carre607" name="radio" /><label onclick="send()" for="carre607" required="required"></label><input class="carre"
+      type="checkbox" id="carre608" name="radio" /><label onclick="send()" for="carre608" required="required"></label><input
+      class="carre" type="checkbox" id="carre609" name="radio" /><label onclick="send()" for="carre609"
+      required="required"></label><input class="carre" type="checkbox" id="carre610" name="radio" /><label
+      for="carre610" required="required"></label><input class="carre" type="checkbox" id="carre611"
+      name="radio" /><label onclick="send()" for="carre611" required="required"></label><input class="carre" type="checkbox"
+      id="carre612" name="radio" /><label onclick="send()" for="carre612" required="required"></label><input class="carre"
+      type="checkbox" id="carre613" name="radio" /><label onclick="send()" for="carre613" required="required"></label><input
+      class="carre" type="checkbox" id="carre614" name="radio" /><label onclick="send()" for="carre614"
+      required="required"></label><input class="carre" type="checkbox" id="carre615" name="radio" /><label
+      for="carre615" required="required"></label><input class="carre" type="checkbox" id="carre616"
+      name="radio" /><label onclick="send()" for="carre616" required="required"></label><input class="carre" type="checkbox"
+      id="carre617" name="radio" /><label onclick="send()" for="carre617" required="required"></label><input class="carre"
+      type="checkbox" id="carre618" name="radio" /><label onclick="send()" for="carre618" required="required"></label><input
+      class="carre" type="checkbox" id="carre619" name="radio" /><label onclick="send()" for="carre619"
+      required="required"></label><input class="carre" type="checkbox" id="carre620" name="radio" /><label
+      for="carre620" required="required"></label><input class="carre" type="checkbox" id="carre621"
+      name="radio" /><label onclick="send()" for="carre621" required="required"></label><input class="carre" type="checkbox"
+      id="carre622" name="radio" /><label onclick="send()" for="carre622" required="required"></label><input class="carre"
+      type="checkbox" id="carre623" name="radio" /><label onclick="send()" for="carre623" required="required"></label><input
+      class="carre" type="checkbox" id="carre624" name="radio" /><label onclick="send()" for="carre624"
+      required="required"></label><input class="carre" type="checkbox" id="carre625" name="radio" /><label
+      for="carre625" required="required"></label><input class="carre" type="checkbox" id="carre626"
+      name="radio" /><label onclick="send()" for="carre626" required="required"></label><input class="carre" type="checkbox"
+      id="carre627" name="radio" /><label onclick="send()" for="carre627" required="required"></label><input class="carre"
+      type="checkbox" id="carre628" name="radio" /><label onclick="send()" for="carre628" required="required"></label><input
+      class="carre" type="checkbox" id="carre629" name="radio" /><label onclick="send()" for="carre629"
+      required="required"></label><input class="carre" type="checkbox" id="carre630" name="radio" /><label
+      for="carre630" required="required"></label><input class="carre" type="checkbox" id="carre631"
+      name="radio" /><label onclick="send()" for="carre631" required="required"></label><input class="carre" type="checkbox"
+      id="carre632" name="radio" /><label onclick="send()" for="carre632" required="required"></label><input class="carre"
+      type="checkbox" id="carre633" name="radio" /><label onclick="send()" for="carre633" required="required"></label><input
+      class="carre" type="checkbox" id="carre634" name="radio" /><label onclick="send()" for="carre634"
+      required="required"></label><input class="carre" type="checkbox" id="carre635" name="radio" /><label
+      for="carre635" required="required"></label><input class="carre" type="checkbox" id="carre636"
+      name="radio" /><label onclick="send()" for="carre636" required="required"></label><input class="carre" type="checkbox"
+      id="carre637" name="radio" /><label onclick="send()" for="carre637" required="required"></label><input class="carre"
+      type="checkbox" id="carre638" name="radio" /><label onclick="send()" for="carre638" required="required"></label><input
+      class="carre" type="checkbox" id="carre639" name="radio" /><label onclick="send()" for="carre639"
+      required="required"></label><input class="carre" type="checkbox" id="carre640" name="radio" /><label
+      for="carre640" required="required"></label><input class="carre" type="checkbox" id="carre641"
+      name="radio" /><label onclick="send()" for="carre641" required="required"></label><input class="carre" type="checkbox"
+      id="carre642" name="radio" /><label onclick="send()" for="carre642" required="required"></label><input class="carre"
+      type="checkbox" id="carre643" name="radio" /><label onclick="send()" for="carre643" required="required"></label><input
+      class="carre" type="checkbox" id="carre644" name="radio" /><label onclick="send()" for="carre644"
+      required="required"></label><input class="carre" type="checkbox" id="carre645" name="radio" /><label
+      for="carre645" required="required"></label><input class="carre" type="checkbox" id="carre646"
+      name="radio" /><label onclick="send()" for="carre646" required="required"></label><input class="carre" type="checkbox"
+      id="carre647" name="radio" /><label onclick="send()" for="carre647" required="required"></label><input class="carre"
+      type="checkbox" id="carre648" name="radio" /><label onclick="send()" for="carre648" required="required"></label><input
+      class="carre" type="checkbox" id="carre649" name="radio" /><label onclick="send()" for="carre649"
+      required="required"></label><input class="carre" type="checkbox" id="carre650" name="radio" /><label
+      for="carre650" required="required"></label><input class="carre" type="checkbox" id="carre651"
+      name="radio" /><label onclick="send()" for="carre651" required="required"></label><input class="carre" type="checkbox"
+      id="carre652" name="radio" /><label onclick="send()" for="carre652" required="required"></label><input class="carre"
+      type="checkbox" id="carre653" name="radio" /><label onclick="send()" for="carre653" required="required"></label><input
+      class="carre" type="checkbox" id="carre654" name="radio" /><label onclick="send()" for="carre654"
+      required="required"></label><input class="carre" type="checkbox" id="carre655" name="radio" /><label
+      for="carre655" required="required"></label><input class="carre" type="checkbox" id="carre656"
+      name="radio" /><label onclick="send()" for="carre656" required="required"></label><input class="carre" type="checkbox"
+      id="carre657" name="radio" /><label onclick="send()" for="carre657" required="required"></label><input class="carre"
+      type="checkbox" id="carre658" name="radio" /><label onclick="send()" for="carre658" required="required"></label><input
+      class="carre" type="checkbox" id="carre659" name="radio" /><label onclick="send()" for="carre659"
+      required="required"></label><input class="carre" type="checkbox" id="carre660" name="radio" /><label
+      for="carre660" required="required"></label><input class="carre" type="checkbox" id="carre661"
+      name="radio" /><label onclick="send()" for="carre661" required="required"></label><input class="carre" type="checkbox"
+      id="carre662" name="radio" /><label onclick="send()" for="carre662" required="required"></label><input class="carre"
+      type="checkbox" id="carre663" name="radio" /><label onclick="send()" for="carre663" required="required"></label><input
+      class="carre" type="checkbox" id="carre664" name="radio" /><label onclick="send()" for="carre664"
+      required="required"></label><input class="carre" type="checkbox" id="carre665" name="radio" /><label
+      for="carre665" required="required"></label><input class="carre" type="checkbox" id="carre666"
+      name="radio" /><label onclick="send()" for="carre666" required="required"></label><input class="carre" type="checkbox"
+      id="carre667" name="radio" /><label onclick="send()" for="carre667" required="required"></label><input class="carre"
+      type="checkbox" id="carre668" name="radio" /><label onclick="send()" for="carre668" required="required"></label><input
+      class="carre" type="checkbox" id="carre669" name="radio" /><label onclick="send()" for="carre669"
+      required="required"></label><input class="carre" type="checkbox" id="carre670" name="radio" /><label
+      for="carre670" required="required"></label><input class="carre" type="checkbox" id="carre671"
+      name="radio" /><label onclick="send()" for="carre671" required="required"></label><input class="carre" type="checkbox"
+      id="carre672" name="radio" /><label onclick="send()" for="carre672" required="required"></label><input class="carre"
+      type="checkbox" id="carre673" name="radio" /><label onclick="send()" for="carre673" required="required"></label><input
+      class="carre" type="checkbox" id="carre674" name="radio" /><label onclick="send()" for="carre674"
+      required="required"></label><input class="carre" type="checkbox" id="carre675" name="radio" /><label
+      for="carre675" required="required"></label><input class="carre" type="checkbox" id="carre676"
+      name="radio" /><label onclick="send()" for="carre676" required="required"></label><input class="carre" type="checkbox"
+      id="carre677" name="radio" /><label onclick="send()" for="carre677" required="required"></label><input class="carre"
+      type="checkbox" id="carre678" name="radio" /><label onclick="send()" for="carre678" required="required"></label><input
+      class="carre" type="checkbox" id="carre679" name="radio" /><label onclick="send()" for="carre679"
+      required="required"></label><input class="carre" type="checkbox" id="carre680" name="radio" /><label
+      for="carre680" required="required"></label><input class="carre" type="checkbox" id="carre681"
+      name="radio" /><label onclick="send()" for="carre681" required="required"></label><input class="carre" type="checkbox"
+      id="carre682" name="radio" /><label onclick="send()" for="carre682" required="required"></label><input class="carre"
+      type="checkbox" id="carre683" name="radio" /><label onclick="send()" for="carre683" required="required"></label><input
+      class="carre" type="checkbox" id="carre684" name="radio" /><label onclick="send()" for="carre684"
+      required="required"></label><input class="carre" type="checkbox" id="carre685" name="radio" /><label
+      for="carre685" required="required"></label><input class="carre" type="checkbox" id="carre686"
+      name="radio" /><label onclick="send()" for="carre686" required="required"></label><input class="carre" type="checkbox"
+      id="carre687" name="radio" /><label onclick="send()" for="carre687" required="required"></label><input class="carre"
+      type="checkbox" id="carre688" name="radio" /><label onclick="send()" for="carre688" required="required"></label><input
+      class="carre" type="checkbox" id="carre689" name="radio" /><label onclick="send()" for="carre689"
+      required="required"></label><input class="carre" type="checkbox" id="carre690" name="radio" /><label
+      for="carre690" required="required"></label><input class="carre" type="checkbox" id="carre691"
+      name="radio" /><label onclick="send()" for="carre691" required="required"></label><input class="carre" type="checkbox"
+      id="carre692" name="radio" /><label onclick="send()" for="carre692" required="required"></label><input class="carre"
+      type="checkbox" id="carre693" name="radio" /><label onclick="send()" for="carre693" required="required"></label><input
+      class="carre" type="checkbox" id="carre694" name="radio" /><label onclick="send()" for="carre694"
+      required="required"></label><input class="carre" type="checkbox" id="carre695" name="radio" /><label
+      for="carre695" required="required"></label><input class="carre" type="checkbox" id="carre696"
+      name="radio" /><label onclick="send()" for="carre696" required="required"></label><input class="carre" type="checkbox"
+      id="carre697" name="radio" /><label onclick="send()" for="carre697" required="required"></label><input class="carre"
+      type="checkbox" id="carre698" name="radio" /><label onclick="send()" for="carre698" required="required"></label><input
+      class="carre" type="checkbox" id="carre699" name="radio" /><label onclick="send()" for="carre699"
+      required="required"></label><input class="carre" type="checkbox" id="carre700" name="radio" /><label
+      for="carre700" required="required"></label><input class="carre" type="checkbox" id="carre701"
+      name="radio" /><label onclick="send()" for="carre701" required="required"></label><input class="carre" type="checkbox"
+      id="carre702" name="radio" /><label onclick="send()" for="carre702" required="required"></label><input class="carre"
+      type="checkbox" id="carre703" name="radio" /><label onclick="send()" for="carre703" required="required"></label><input
+      class="carre" type="checkbox" id="carre704" name="radio" /><label onclick="send()" for="carre704"
+      required="required"></label><input class="carre" type="checkbox" id="carre705" name="radio" /><label
+      for="carre705" required="required"></label><input class="carre" type="checkbox" id="carre706"
+      name="radio" /><label onclick="send()" for="carre706" required="required"></label><input class="carre" type="checkbox"
+      id="carre707" name="radio" /><label onclick="send()" for="carre707" required="required"></label><input class="carre"
+      type="checkbox" id="carre708" name="radio" /><label onclick="send()" for="carre708" required="required"></label><input
+      class="carre" type="checkbox" id="carre709" name="radio" /><label onclick="send()" for="carre709"
+      required="required"></label><input class="carre" type="checkbox" id="carre710" name="radio" /><label
+      for="carre710" required="required"></label><input class="carre" type="checkbox" id="carre711"
+      name="radio" /><label onclick="send()" for="carre711" required="required"></label><input class="carre" type="checkbox"
+      id="carre712" name="radio" /><label onclick="send()" for="carre712" required="required"></label><input class="carre"
+      type="checkbox" id="carre713" name="radio" /><label onclick="send()" for="carre713" required="required"></label><input
+      class="carre" type="checkbox" id="carre714" name="radio" /><label onclick="send()" for="carre714"
+      required="required"></label><input class="carre" type="checkbox" id="carre715" name="radio" /><label
+      for="carre715" required="required"></label><input class="carre" type="checkbox" id="carre716"
+      name="radio" /><label onclick="send()" for="carre716" required="required"></label><input class="carre" type="checkbox"
+      id="carre717" name="radio" /><label onclick="send()" for="carre717" required="required"></label><input class="carre"
+      type="checkbox" id="carre718" name="radio" /><label onclick="send()" for="carre718" required="required"></label><input
+      class="carre" type="checkbox" id="carre719" name="radio" /><label onclick="send()" for="carre719"
+      required="required"></label><input class="carre" type="checkbox" id="carre720" name="radio" /><label
+      for="carre720" required="required"></label><input class="carre" type="checkbox" id="carre721"
+      name="radio" /><label onclick="send()" for="carre721" required="required"></label><input class="carre" type="checkbox"
+      id="carre722" name="radio" /><label onclick="send()" for="carre722" required="required"></label><input class="carre"
+      type="checkbox" id="carre723" name="radio" /><label onclick="send()" for="carre723" required="required"></label><input
+      class="carre" type="checkbox" id="carre724" name="radio" /><label onclick="send()" for="carre724"
+      required="required"></label><input class="carre" type="checkbox" id="carre725" name="radio" /><label
+      for="carre725" required="required"></label><input class="carre" type="checkbox" id="carre726"
+      name="radio" /><label onclick="send()" for="carre726" required="required"></label><input class="carre" type="checkbox"
+      id="carre727" name="radio" /><label onclick="send()" for="carre727" required="required"></label><input class="carre"
+      type="checkbox" id="carre728" name="radio" /><label onclick="send()" for="carre728" required="required"></label><input
+      class="carre" type="checkbox" id="carre729" name="radio" /><label onclick="send()" for="carre729"
+      required="required"></label><input class="carre" type="checkbox" id="carre730" name="radio" /><label
+      for="carre730" required="required"></label><input class="carre" type="checkbox" id="carre731"
+      name="radio" /><label onclick="send()" for="carre731" required="required"></label><input class="carre" type="checkbox"
+      id="carre732" name="radio" /><label onclick="send()" for="carre732" required="required"></label><input class="carre"
+      type="checkbox" id="carre733" name="radio" /><label onclick="send()" for="carre733" required="required"></label><input
+      class="carre" type="checkbox" id="carre734" name="radio" /><label onclick="send()" for="carre734"
+      required="required"></label><input class="carre" type="checkbox" id="carre735" name="radio" /><label
+      for="carre735" required="required"></label><input class="carre" type="checkbox" id="carre736"
+      name="radio" /><label onclick="send()" for="carre736" required="required"></label><input class="carre" type="checkbox"
+      id="carre737" name="radio" /><label onclick="send()" for="carre737" required="required"></label><input class="carre"
+      type="checkbox" id="carre738" name="radio" /><label onclick="send()" for="carre738" required="required"></label><input
+      class="carre" type="checkbox" id="carre739" name="radio" /><label onclick="send()" for="carre739"
+      required="required"></label><input class="carre" type="checkbox" id="carre740" name="radio" /><label
+      for="carre740" required="required"></label><input class="carre" type="checkbox" id="carre741"
+      name="radio" /><label onclick="send()" for="carre741" required="required"></label><input class="carre" type="checkbox"
+      id="carre742" name="radio" /><label onclick="send()" for="carre742" required="required"></label><input class="carre"
+      type="checkbox" id="carre743" name="radio" /><label onclick="send()" for="carre743" required="required"></label><input
+      class="carre" type="checkbox" id="carre744" name="radio" /><label onclick="send()" for="carre744"
+      required="required"></label><input class="carre" type="checkbox" id="carre745" name="radio" /><label
+      for="carre745" required="required"></label><input class="carre" type="checkbox" id="carre746"
+      name="radio" /><label onclick="send()" for="carre746" required="required"></label><input class="carre" type="checkbox"
+      id="carre747" name="radio" /><label onclick="send()" for="carre747" required="required"></label><input class="carre"
+      type="checkbox" id="carre748" name="radio" /><label onclick="send()" for="carre748" required="required"></label><input
+      class="carre" type="checkbox" id="carre749" name="radio" /><label onclick="send()" for="carre749"
+      required="required"></label><input class="carre" type="checkbox" id="carre750" name="radio" /><label
+      for="carre750" required="required"></label><input class="carre" type="checkbox" id="carre751"
+      name="radio" /><label onclick="send()" for="carre751" required="required"></label><input class="carre" type="checkbox"
+      id="carre752" name="radio" /><label onclick="send()" for="carre752" required="required"></label><input class="carre"
+      type="checkbox" id="carre753" name="radio" /><label onclick="send()" for="carre753" required="required"></label><input
+      class="carre" type="checkbox" id="carre754" name="radio" /><label onclick="send()" for="carre754"
+      required="required"></label><input class="carre" type="checkbox" id="carre755" name="radio" /><label
+      for="carre755" required="required"></label><input class="carre" type="checkbox" id="carre756"
+      name="radio" /><label onclick="send()" for="carre756" required="required"></label><input class="carre" type="checkbox"
+      id="carre757" name="radio" /><label onclick="send()" for="carre757" required="required"></label><input class="carre"
+      type="checkbox" id="carre758" name="radio" /><label onclick="send()" for="carre758" required="required"></label><input
+      class="carre" type="checkbox" id="carre759" name="radio" /><label onclick="send()" for="carre759"
+      required="required"></label><input class="carre" type="checkbox" id="carre760" name="radio" /><label
+      for="carre760" required="required"></label><input class="carre" type="checkbox" id="carre761"
+      name="radio" /><label onclick="send()" for="carre761" required="required"></label><input class="carre" type="checkbox"
+      id="carre762" name="radio" /><label onclick="send()" for="carre762" required="required"></label><input class="carre"
+      type="checkbox" id="carre763" name="radio" /><label onclick="send()" for="carre763" required="required"></label><input
+      class="carre" type="checkbox" id="carre764" name="radio" /><label onclick="send()" for="carre764"
+      required="required"></label><input class="carre" type="checkbox" id="carre765" name="radio" /><label
+      for="carre765" required="required"></label><input class="carre" type="checkbox" id="carre766"
+      name="radio" /><label onclick="send()" for="carre766" required="required"></label><input class="carre" type="checkbox"
+      id="carre767" name="radio" /><label onclick="send()" for="carre767" required="required"></label><input class="carre"
+      type="checkbox" id="carre768" name="radio" /><label onclick="send()" for="carre768" required="required"></label><input
+      class="carre" type="checkbox" id="carre769" name="radio" /><label onclick="send()" for="carre769"
+      required="required"></label><input class="carre" type="checkbox" id="carre770" name="radio" /><label
+      for="carre770" required="required"></label><input class="carre" type="checkbox" id="carre771"
+      name="radio" /><label onclick="send()" for="carre771" required="required"></label><input class="carre" type="checkbox"
+      id="carre772" name="radio" /><label onclick="send()" for="carre772" required="required"></label><input class="carre"
+      type="checkbox" id="carre773" name="radio" /><label onclick="send()" for="carre773" required="required"></label><input
+      class="carre" type="checkbox" id="carre774" name="radio" /><label onclick="send()" for="carre774"
+      required="required"></label><input class="carre" type="checkbox" id="carre775" name="radio" /><label
+      for="carre775" required="required"></label><input class="carre" type="checkbox" id="carre776"
+      name="radio" /><label onclick="send()" for="carre776" required="required"></label><input class="carre" type="checkbox"
+      id="carre777" name="radio" /><label onclick="send()" for="carre777" required="required"></label><input class="carre"
+      type="checkbox" id="carre778" name="radio" /><label onclick="send()" for="carre778" required="required"></label><input
+      class="carre" type="checkbox" id="carre779" name="radio" /><label onclick="send()" for="carre779"
+      required="required"></label><input class="carre" type="checkbox" id="carre780" name="radio" /><label
+      for="carre780" required="required"></label><input class="carre" type="checkbox" id="carre781"
+      name="radio" /><label onclick="send()" for="carre781" required="required"></label><input class="carre" type="checkbox"
+      id="carre782" name="radio" /><label onclick="send()" for="carre782" required="required"></label><input class="carre"
+      type="checkbox" id="carre783" name="radio" /><label onclick="send()" for="carre783" required="required"></label><input
+      class="carre" type="checkbox" id="carre784" name="radio" /><label onclick="send()" for="carre784"
+      required="required"></label><input class="carre" type="checkbox" id="carre785" name="radio" /><label
+      for="carre785" required="required"></label><input class="carre" type="checkbox" id="carre786"
+      name="radio" /><label onclick="send()" for="carre786" required="required"></label><input class="carre" type="checkbox"
+      id="carre787" name="radio" /><label onclick="send()" for="carre787" required="required"></label><input class="carre"
+      type="checkbox" id="carre788" name="radio" /><label onclick="send()" for="carre788" required="required"></label><input
+      class="carre" type="checkbox" id="carre789" name="radio" /><label onclick="send()" for="carre789"
+      required="required"></label><input class="carre" type="checkbox" id="carre790" name="radio" /><label
+      for="carre790" required="required"></label><input class="carre" type="checkbox" id="carre791"
+      name="radio" /><label onclick="send()" for="carre791" required="required"></label><input class="carre" type="checkbox"
+      id="carre792" name="radio" /><label onclick="send()" for="carre792" required="required"></label><input class="carre"
+      type="checkbox" id="carre793" name="radio" /><label onclick="send()" for="carre793" required="required"></label><input
+      class="carre" type="checkbox" id="carre794" name="radio" /><label onclick="send()" for="carre794"
+      required="required"></label><input class="carre" type="checkbox" id="carre795" name="radio" /><label
+      for="carre795" required="required"></label><input class="carre" type="checkbox" id="carre796"
+      name="radio" /><label onclick="send()" for="carre796" required="required"></label><input class="carre" type="checkbox"
+      id="carre797" name="radio" /><label onclick="send()" for="carre797" required="required"></label><input class="carre"
+      type="checkbox" id="carre798" name="radio" /><label onclick="send()" for="carre798" required="required"></label><input
+      class="carre" type="checkbox" id="carre799" name="radio" /><label onclick="send()" for="carre799"
+      required="required"></label><input class="carre" type="checkbox" id="carre800" name="radio" /><label
+      for="carre800" required="required"></label><input class="carre" type="checkbox" id="carre801"
+      name="radio" /><label onclick="send()" for="carre801" required="required"></label><input class="carre" type="checkbox"
+      id="carre802" name="radio" /><label onclick="send()" for="carre802" required="required"></label><input class="carre"
+      type="checkbox" id="carre803" name="radio" /><label onclick="send()" for="carre803" required="required"></label><input
+      class="carre" type="checkbox" id="carre804" name="radio" /><label onclick="send()" for="carre804"
+      required="required"></label><input class="carre" type="checkbox" id="carre805" name="radio" /><label
+      for="carre805" required="required"></label><input class="carre" type="checkbox" id="carre806"
+      name="radio" /><label onclick="send()" for="carre806" required="required"></label><input class="carre" type="checkbox"
+      id="carre807" name="radio" /><label onclick="send()" for="carre807" required="required"></label><input class="carre"
+      type="checkbox" id="carre808" name="radio" /><label onclick="send()" for="carre808" required="required"></label><input
+      class="carre" type="checkbox" id="carre809" name="radio" /><label onclick="send()" for="carre809"
+      required="required"></label><input class="carre" type="checkbox" id="carre810" name="radio" /><label
+      for="carre810" required="required"></label><input class="carre" type="checkbox" id="carre811"
+      name="radio" /><label onclick="send()" for="carre811" required="required"></label><input class="carre" type="checkbox"
+      id="carre812" name="radio" /><label onclick="send()" for="carre812" required="required"></label><input class="carre"
+      type="checkbox" id="carre813" name="radio" /><label onclick="send()" for="carre813" required="required"></label><input
+      class="carre" type="checkbox" id="carre814" name="radio" /><label onclick="send()" for="carre814"
+      required="required"></label><input class="carre" type="checkbox" id="carre815" name="radio" /><label
+      for="carre815" required="required"></label><input class="carre" type="checkbox" id="carre816"
+      name="radio" /><label onclick="send()" for="carre816" required="required"></label><input class="carre" type="checkbox"
+      id="carre817" name="radio" /><label onclick="send()" for="carre817" required="required"></label><input class="carre"
+      type="checkbox" id="carre818" name="radio" /><label onclick="send()" for="carre818" required="required"></label><input
+      class="carre" type="checkbox" id="carre819" name="radio" /><label onclick="send()" for="carre819"
+      required="required"></label><input class="carre" type="checkbox" id="carre820" name="radio" /><label
+      for="carre820" required="required"></label><input class="carre" type="checkbox" id="carre821"
+      name="radio" /><label onclick="send()" for="carre821" required="required"></label><input class="carre" type="checkbox"
+      id="carre822" name="radio" /><label onclick="send()" for="carre822" required="required"></label><input class="carre"
+      type="checkbox" id="carre823" name="radio" /><label onclick="send()" for="carre823" required="required"></label><input
+      class="carre" type="checkbox" id="carre824" name="radio" /><label onclick="send()" for="carre824"
+      required="required"></label><input class="carre" type="checkbox" id="carre825" name="radio" /><label
+      for="carre825" required="required"></label><input class="carre" type="checkbox" id="carre826"
+      name="radio" /><label onclick="send()" for="carre826" required="required"></label><input class="carre" type="checkbox"
+      id="carre827" name="radio" /><label onclick="send()" for="carre827" required="required"></label><input class="carre"
+      type="checkbox" id="carre828" name="radio" /><label onclick="send()" for="carre828" required="required"></label><input
+      class="carre" type="checkbox" id="carre829" name="radio" /><label onclick="send()" for="carre829"
+      required="required"></label><input class="carre" type="checkbox" id="carre830" name="radio" /><label
+      for="carre830" required="required"></label><input class="carre" type="checkbox" id="carre831"
+      name="radio" /><label onclick="send()" for="carre831" required="required"></label><input class="carre" type="checkbox"
+      id="carre832" name="radio" /><label onclick="send()" for="carre832" required="required"></label><input class="carre"
+      type="checkbox" id="carre833" name="radio" /><label onclick="send()" for="carre833" required="required"></label><input
+      class="carre" type="checkbox" id="carre834" name="radio" /><label onclick="send()" for="carre834"
+      required="required"></label><input class="carre" type="checkbox" id="carre835" name="radio" /><label
+      for="carre835" required="required"></label><input class="carre" type="checkbox" id="carre836"
+      name="radio" /><label onclick="send()" for="carre836" required="required"></label><input class="carre" type="checkbox"
+      id="carre837" name="radio" /><label onclick="send()" for="carre837" required="required"></label><input class="carre"
+      type="checkbox" id="carre838" name="radio" /><label onclick="send()" for="carre838" required="required"></label><input
+      class="carre" type="checkbox" id="carre839" name="radio" /><label onclick="send()" for="carre839"
+      required="required"></label><input class="carre" type="checkbox" id="carre840" name="radio" /><label
+      for="carre840" required="required"></label><input class="carre" type="checkbox" id="carre841"
+      name="radio" /><label onclick="send()" for="carre841" required="required"></label><input class="carre" type="checkbox"
+      id="carre842" name="radio" /><label onclick="send()" for="carre842" required="required"></label><input class="carre"
+      type="checkbox" id="carre843" name="radio" /><label onclick="send()" for="carre843" required="required"></label><input
+      class="carre" type="checkbox" id="carre844" name="radio" /><label onclick="send()" for="carre844"
+      required="required"></label><input class="carre" type="checkbox" id="carre845" name="radio" /><label
+      for="carre845" required="required"></label><input class="carre" type="checkbox" id="carre846"
+      name="radio" /><label onclick="send()" for="carre846" required="required"></label><input class="carre" type="checkbox"
+      id="carre847" name="radio" /><label onclick="send()" for="carre847" required="required"></label><input class="carre"
+      type="checkbox" id="carre848" name="radio" /><label onclick="send()" for="carre848" required="required"></label><input
+      class="carre" type="checkbox" id="carre849" name="radio" /><label onclick="send()" for="carre849"
+      required="required"></label><input class="carre" type="checkbox" id="carre850" name="radio" /><label
+      for="carre850" required="required"></label><input class="carre" type="checkbox" id="carre851"
+      name="radio" /><label onclick="send()" for="carre851" required="required"></label><input class="carre" type="checkbox"
+      id="carre852" name="radio" /><label onclick="send()" for="carre852" required="required"></label><input class="carre"
+      type="checkbox" id="carre853" name="radio" /><label onclick="send()" for="carre853" required="required"></label><input
+      class="carre" type="checkbox" id="carre854" name="radio" /><label onclick="send()" for="carre854"
+      required="required"></label><input class="carre" type="checkbox" id="carre855" name="radio" /><label
+      for="carre855" required="required"></label><input class="carre" type="checkbox" id="carre856"
+      name="radio" /><label onclick="send()" for="carre856" required="required"></label><input class="carre" type="checkbox"
+      id="carre857" name="radio" /><label onclick="send()" for="carre857" required="required"></label><input class="carre"
+      type="checkbox" id="carre858" name="radio" /><label onclick="send()" for="carre858" required="required"></label><input
+      class="carre" type="checkbox" id="carre859" name="radio" /><label onclick="send()" for="carre859"
+      required="required"></label><input class="carre" type="checkbox" id="carre860" name="radio" /><label
+      for="carre860" required="required"></label><input class="carre" type="checkbox" id="carre861"
+      name="radio" /><label onclick="send()" for="carre861" required="required"></label><input class="carre" type="checkbox"
+      id="carre862" name="radio" /><label onclick="send()" for="carre862" required="required"></label><input class="carre"
+      type="checkbox" id="carre863" name="radio" /><label onclick="send()" for="carre863" required="required"></label><input
+      class="carre" type="checkbox" id="carre864" name="radio" /><label onclick="send()" for="carre864"
+      required="required"></label><input class="carre" type="checkbox" id="carre865" name="radio" /><label
+      for="carre865" required="required"></label><input class="carre" type="checkbox" id="carre866"
+      name="radio" /><label onclick="send()" for="carre866" required="required"></label><input class="carre" type="checkbox"
+      id="carre867" name="radio" /><label onclick="send()" for="carre867" required="required"></label><input class="carre"
+      type="checkbox" id="carre868" name="radio" /><label onclick="send()" for="carre868" required="required"></label><input
+      class="carre" type="checkbox" id="carre869" name="radio" /><label onclick="send()" for="carre869"
+      required="required"></label><input class="carre" type="checkbox" id="carre870" name="radio" /><label
+      for="carre870" required="required"></label><input class="carre" type="checkbox" id="carre871"
+      name="radio" /><label onclick="send()" for="carre871" required="required"></label><input class="carre" type="checkbox"
+      id="carre872" name="radio" /><label onclick="send()" for="carre872" required="required"></label><input class="carre"
+      type="checkbox" id="carre873" name="radio" /><label onclick="send()" for="carre873" required="required"></label><input
+      class="carre" type="checkbox" id="carre874" name="radio" /><label onclick="send()" for="carre874"
+      required="required"></label><input class="carre" type="checkbox" id="carre875" name="radio" /><label
+      for="carre875" required="required"></label><input class="carre" type="checkbox" id="carre876"
+      name="radio" /><label onclick="send()" for="carre876" required="required"></label><input class="carre" type="checkbox"
+      id="carre877" name="radio" /><label onclick="send()" for="carre877" required="required"></label><input class="carre"
+      type="checkbox" id="carre878" name="radio" /><label onclick="send()" for="carre878" required="required"></label><input
+      class="carre" type="checkbox" id="carre879" name="radio" /><label onclick="send()" for="carre879"
+      required="required"></label><input class="carre" type="checkbox" id="carre880" name="radio" /><label
+      for="carre880" required="required"></label><input class="carre" type="checkbox" id="carre881"
+      name="radio" /><label onclick="send()" for="carre881" required="required"></label><input class="carre" type="checkbox"
+      id="carre882" name="radio" /><label onclick="send()" for="carre882" required="required"></label><input class="carre"
+      type="checkbox" id="carre883" name="radio" /><label onclick="send()" for="carre883" required="required"></label><input
+      class="carre" type="checkbox" id="carre884" name="radio" /><label onclick="send()" for="carre884"
+      required="required"></label><input class="carre" type="checkbox" id="carre885" name="radio" /><label
+      for="carre885" required="required"></label><input class="carre" type="checkbox" id="carre886"
+      name="radio" /><label onclick="send()" for="carre886" required="required"></label><input class="carre" type="checkbox"
+      id="carre887" name="radio" /><label onclick="send()" for="carre887" required="required"></label><input class="carre"
+      type="checkbox" id="carre888" name="radio" /><label onclick="send()" for="carre888" required="required"></label><input
+      class="carre" type="checkbox" id="carre889" name="radio" /><label onclick="send()" for="carre889"
+      required="required"></label><input class="carre" type="checkbox" id="carre890" name="radio" /><label
+      for="carre890" required="required"></label><input class="carre" type="checkbox" id="carre891"
+      name="radio" /><label onclick="send()" for="carre891" required="required"></label><input class="carre" type="checkbox"
+      id="carre892" name="radio" /><label onclick="send()" for="carre892" required="required"></label><input class="carre"
+      type="checkbox" id="carre893" name="radio" /><label onclick="send()" for="carre893" required="required"></label><input
+      class="carre" type="checkbox" id="carre894" name="radio" /><label onclick="send()" for="carre894"
+      required="required"></label><input class="carre" type="checkbox" id="carre895" name="radio" /><label
+      for="carre895" required="required"></label><input class="carre" type="checkbox" id="carre896"
+      name="radio" /><label onclick="send()" for="carre896" required="required"></label><input class="carre" type="checkbox"
+      id="carre897" name="radio" /><label onclick="send()" for="carre897" required="required"></label><input class="carre"
+      type="checkbox" id="carre898" name="radio" /><label onclick="send()" for="carre898" required="required"></label><input
+      class="carre" type="checkbox" id="carre899" name="radio" /><label onclick="send()" for="carre899"
+      required="required"></label><input class="carre" type="checkbox" id="carre900" name="radio" /><label
+      for="carre900" required="required"></label><input class="carre" type="checkbox" id="carre901"
+      name="radio" /><label onclick="send()" for="carre901" required="required"></label><input class="carre" type="checkbox"
+      id="carre902" name="radio" /><label onclick="send()" for="carre902" required="required"></label><input class="carre"
+      type="checkbox" id="carre903" name="radio" /><label onclick="send()" for="carre903" required="required"></label><input
+      class="carre" type="checkbox" id="carre904" name="radio" /><label onclick="send()" for="carre904"
+      required="required"></label><input class="carre" type="checkbox" id="carre905" name="radio" /><label
+      for="carre905" required="required"></label><input class="carre" type="checkbox" id="carre906"
+      name="radio" /><label onclick="send()" for="carre906" required="required"></label><input class="carre" type="checkbox"
+      id="carre907" name="radio" /><label onclick="send()" for="carre907" required="required"></label><input class="carre"
+      type="checkbox" id="carre908" name="radio" /><label onclick="send()" for="carre908" required="required"></label><input
+      class="carre" type="checkbox" id="carre909" name="radio" /><label onclick="send()" for="carre909"
+      required="required"></label><input class="carre" type="checkbox" id="carre910" name="radio" /><label
+      for="carre910" required="required"></label><input class="carre" type="checkbox" id="carre911"
+      name="radio" /><label onclick="send()" for="carre911" required="required"></label><input class="carre" type="checkbox"
+      id="carre912" name="radio" /><label onclick="send()" for="carre912" required="required"></label><input class="carre"
+      type="checkbox" id="carre913" name="radio" /><label onclick="send()" for="carre913" required="required"></label><input
+      class="carre" type="checkbox" id="carre914" name="radio" /><label onclick="send()" for="carre914"
+      required="required"></label><input class="carre" type="checkbox" id="carre915" name="radio" /><label
+      for="carre915" required="required"></label><input class="carre" type="checkbox" id="carre916"
+      name="radio" /><label onclick="send()" for="carre916" required="required"></label><input class="carre" type="checkbox"
+      id="carre917" name="radio" /><label onclick="send()" for="carre917" required="required"></label><input class="carre"
+      type="checkbox" id="carre918" name="radio" /><label onclick="send()" for="carre918" required="required"></label><input
+      class="carre" type="checkbox" id="carre919" name="radio" /><label onclick="send()" for="carre919"
+      required="required"></label><input class="carre" type="checkbox" id="carre920" name="radio" /><label
+      for="carre920" required="required"></label><input class="carre" type="checkbox" id="carre921"
+      name="radio" /><label onclick="send()" for="carre921" required="required"></label><input class="carre" type="checkbox"
+      id="carre922" name="radio" /><label onclick="send()" for="carre922" required="required"></label><input class="carre"
+      type="checkbox" id="carre923" name="radio" /><label onclick="send()" for="carre923" required="required"></label><input
+      class="carre" type="checkbox" id="carre924" name="radio" /><label onclick="send()" for="carre924"
+      required="required"></label><input class="carre" type="checkbox" id="carre925" name="radio" /><label
+      for="carre925" required="required"></label><input class="carre" type="checkbox" id="carre926"
+      name="radio" /><label onclick="send()" for="carre926" required="required"></label><input class="carre" type="checkbox"
+      id="carre927" name="radio" /><label onclick="send()" for="carre927" required="required"></label><input class="carre"
+      type="checkbox" id="carre928" name="radio" /><label onclick="send()" for="carre928" required="required"></label><input
+      class="carre" type="checkbox" id="carre929" name="radio" /><label onclick="send()" for="carre929"
+      required="required"></label><input class="carre" type="checkbox" id="carre930" name="radio" /><label
+      for="carre930" required="required"></label><input class="carre" type="checkbox" id="carre931"
+      name="radio" /><label onclick="send()" for="carre931" required="required"></label><input class="carre" type="checkbox"
+      id="carre932" name="radio" /><label onclick="send()" for="carre932" required="required"></label><input class="carre"
+      type="checkbox" id="carre933" name="radio" /><label onclick="send()" for="carre933" required="required"></label><input
+      class="carre" type="checkbox" id="carre934" name="radio" /><label onclick="send()" for="carre934"
+      required="required"></label><input class="carre" type="checkbox" id="carre935" name="radio" /><label
+      for="carre935" required="required"></label><input class="carre" type="checkbox" id="carre936"
+      name="radio" /><label onclick="send()" for="carre936" required="required"></label><input class="carre" type="checkbox"
+      id="carre937" name="radio" /><label onclick="send()" for="carre937" required="required"></label><input class="carre"
+      type="checkbox" id="carre938" name="radio" /><label onclick="send()" for="carre938" required="required"></label><input
+      class="carre" type="checkbox" id="carre939" name="radio" /><label onclick="send()" for="carre939"
+      required="required"></label><input class="carre" type="checkbox" id="carre940" name="radio" /><label
+      for="carre940" required="required"></label><input class="carre" type="checkbox" id="carre941"
+      name="radio" /><label onclick="send()" for="carre941" required="required"></label><input class="carre" type="checkbox"
+      id="carre942" name="radio" /><label onclick="send()" for="carre942" required="required"></label><input class="carre"
+      type="checkbox" id="carre943" name="radio" /><label onclick="send()" for="carre943" required="required"></label><input
+      class="carre" type="checkbox" id="carre944" name="radio" /><label onclick="send()" for="carre944"
+      required="required"></label><input class="carre" type="checkbox" id="carre945" name="radio" /><label
+      for="carre945" required="required"></label><input class="carre" type="checkbox" id="carre946"
+      name="radio" /><label onclick="send()" for="carre946" required="required"></label><input class="carre" type="checkbox"
+      id="carre947" name="radio" /><label onclick="send()" for="carre947" required="required"></label><input class="carre"
+      type="checkbox" id="carre948" name="radio" /><label onclick="send()" for="carre948" required="required"></label><input
+      class="carre" type="checkbox" id="carre949" name="radio" /><label onclick="send()" for="carre949"
+      required="required"></label><input class="carre" type="checkbox" id="carre950" name="radio" /><label
+      for="carre950" required="required"></label><input class="carre" type="checkbox" id="carre951"
+      name="radio" /><label onclick="send()" for="carre951" required="required"></label><input class="carre" type="checkbox"
+      id="carre952" name="radio" /><label onclick="send()" for="carre952" required="required"></label><input class="carre"
+      type="checkbox" id="carre953" name="radio" /><label onclick="send()" for="carre953" required="required"></label><input
+      class="carre" type="checkbox" id="carre954" name="radio" /><label onclick="send()" for="carre954"
+      required="required"></label><input class="carre" type="checkbox" id="carre955" name="radio" /><label
+      for="carre955" required="required"></label><input class="carre" type="checkbox" id="carre956"
+      name="radio" /><label onclick="send()" for="carre956" required="required"></label><input class="carre" type="checkbox"
+      id="carre957" name="radio" /><label onclick="send()" for="carre957" required="required"></label><input class="carre"
+      type="checkbox" id="carre958" name="radio" /><label onclick="send()" for="carre958" required="required"></label><input
+      class="carre" type="checkbox" id="carre959" name="radio" /><label onclick="send()" for="carre959"
+      required="required"></label><input class="carre" type="checkbox" id="carre960" name="radio" /><label
+      for="carre960" required="required"></label><input class="carre" type="checkbox" id="carre961"
+      name="radio" /><label onclick="send()" for="carre961" required="required"></label><input class="carre" type="checkbox"
+      id="carre962" name="radio" /><label onclick="send()" for="carre962" required="required"></label><input class="carre"
+      type="checkbox" id="carre963" name="radio" /><label onclick="send()" for="carre963" required="required"></label><input
+      class="carre" type="checkbox" id="carre964" name="radio" /><label onclick="send()" for="carre964"
+      required="required"></label><input class="carre" type="checkbox" id="carre965" name="radio" /><label
+      for="carre965" required="required"></label><input class="carre" type="checkbox" id="carre966"
+      name="radio" /><label onclick="send()" for="carre966" required="required"></label><input class="carre" type="checkbox"
+      id="carre967" name="radio" /><label onclick="send()" for="carre967" required="required"></label><input class="carre"
+      type="checkbox" id="carre968" name="radio" /><label onclick="send()" for="carre968" required="required"></label><input
+      class="carre" type="checkbox" id="carre969" name="radio" /><label onclick="send()" for="carre969"
+      required="required"></label><input class="carre" type="checkbox" id="carre970" name="radio" /><label
+      for="carre970" required="required"></label><input class="carre" type="checkbox" id="carre971"
+      name="radio" /><label onclick="send()" for="carre971" required="required"></label><input class="carre" type="checkbox"
+      id="carre972" name="radio" /><label onclick="send()" for="carre972" required="required"></label><input class="carre"
+      type="checkbox" id="carre973" name="radio" /><label onclick="send()" for="carre973" required="required"></label><input
+      class="carre" type="checkbox" id="carre974" name="radio" /><label onclick="send()" for="carre974"
+      required="required"></label><input class="carre" type="checkbox" id="carre975" name="radio" /><label
+      for="carre975" required="required"></label><input class="carre" type="checkbox" id="carre976"
+      name="radio" /><label onclick="send()" for="carre976" required="required"></label><input class="carre" type="checkbox"
+      id="carre977" name="radio" /><label onclick="send()" for="carre977" required="required"></label><input class="carre"
+      type="checkbox" id="carre978" name="radio" /><label onclick="send()" for="carre978" required="required"></label><input
+      class="carre" type="checkbox" id="carre979" name="radio" /><label onclick="send()" for="carre979"
+      required="required"></label><input class="carre" type="checkbox" id="carre980" name="radio" /><label
+      for="carre980" required="required"></label><input class="carre" type="checkbox" id="carre981"
+      name="radio" /><label onclick="send()" for="carre981" required="required"></label><input class="carre" type="checkbox"
+      id="carre982" name="radio" /><label onclick="send()" for="carre982" required="required"></label><input class="carre"
+      type="checkbox" id="carre983" name="radio" /><label onclick="send()" for="carre983" required="required"></label><input
+      class="carre" type="checkbox" id="carre984" name="radio" /><label onclick="send()" for="carre984"
+      required="required"></label><input class="carre" type="checkbox" id="carre985" name="radio" /><label
+      for="carre985" required="required"></label><input class="carre" type="checkbox" id="carre986"
+      name="radio" /><label onclick="send()" for="carre986" required="required"></label><input class="carre" type="checkbox"
+      id="carre987" name="radio" /><label onclick="send()" for="carre987" required="required"></label><input class="carre"
+      type="checkbox" id="carre988" name="radio" /><label onclick="send()" for="carre988" required="required"></label><input
+      class="carre" type="checkbox" id="carre989" name="radio" /><label onclick="send()" for="carre989"
+      required="required"></label><input class="carre" type="checkbox" id="carre990" name="radio" /><label
+      for="carre990" required="required"></label><input class="carre" type="checkbox" id="carre991"
+      name="radio" /><label onclick="send()" for="carre991" required="required"></label><input class="carre" type="checkbox"
+      id="carre992" name="radio" /><label onclick="send()" for="carre992" required="required"></label><input class="carre"
+      type="checkbox" id="carre993" name="radio" /><label onclick="send()" for="carre993" required="required"></label><input
+      class="carre" type="checkbox" id="carre994" name="radio" /><label onclick="send()" for="carre994"
+      required="required"></label><input class="carre" type="checkbox" id="carre995" name="radio" /><label
+      for="carre995" required="required"></label><input class="carre" type="checkbox" id="carre996"
+      name="radio" /><label onclick="send()" for="carre996" required="required"></label><input class="carre" type="checkbox"
+      id="carre997" name="radio" /><label onclick="send()" for="carre997" required="required"></label><input class="carre"
+      type="checkbox" id="carre998" name="radio" /><label onclick="send()" for="carre998" required="required"></label><input
+      class="carre" type="checkbox" id="carre999" name="radio" /><label onclick="send()" for="carre999"
+      required="required"></label><input class="carre" type="checkbox" id="carre1000" name="radio" /><label
+      for="carre1000" required="required"></label><input class="carre" type="checkbox" id="carre1001"
+      name="radio" /><label onclick="send()" for="carre1001" required="required"></label><input class="carre" type="checkbox"
+      id="carre1002" name="radio" /><label onclick="send()" for="carre1002" required="required"></label><input class="carre"
+      type="checkbox" id="carre1003" name="radio" /><label onclick="send()" for="carre1003" required="required"></label><input
+      class="carre" type="checkbox" id="carre1004" name="radio" /><label onclick="send()" for="carre1004"
+      required="required"></label><input class="carre" type="checkbox" id="carre1005" name="radio" /><label
+      for="carre1005" required="required"></label><input class="carre" type="checkbox" id="carre1006"
+      name="radio" /><label onclick="send()" for="carre1006" required="required"></label><input class="carre" type="checkbox"
+      id="carre1007" name="radio" /><label onclick="send()" for="carre1007" required="required"></label><input class="carre"
+      type="checkbox" id="carre1008" name="radio" /><label onclick="send()" for="carre1008" required="required"></label><input
+      class="carre" type="checkbox" id="carre1009" name="radio" /><label onclick="send()" for="carre1009"
+      required="required"></label><input class="carre" type="checkbox" id="carre1010" name="radio" /><label
+      for="carre1010" required="required"></label><input class="carre" type="checkbox" id="carre1011"
+      name="radio" /><label onclick="send()" for="carre1011" required="required"></label><input class="carre" type="checkbox"
+      id="carre1012" name="radio" /><label onclick="send()" for="carre1012" required="required"></label><input class="carre"
+      type="checkbox" id="carre1013" name="radio" /><label onclick="send()" for="carre1013" required="required"></label><input
+      class="carre" type="checkbox" id="carre1014" name="radio" /><label onclick="send()" for="carre1014"
+      required="required"></label><input class="carre" type="checkbox" id="carre1015" name="radio" /><label
+      for="carre1015" required="required"></label><input class="carre" type="checkbox" id="carre1016"
+      name="radio" /><label onclick="send()" for="carre1016" required="required"></label><input class="carre" type="checkbox"
+      id="carre1017" name="radio" /><label onclick="send()" for="carre1017" required="required"></label><input class="carre"
+      type="checkbox" id="carre1018" name="radio" /><label onclick="send()" for="carre1018" required="required"></label><input
+      class="carre" type="checkbox" id="carre1019" name="radio" /><label onclick="send()" for="carre1019"
+      required="required"></label><input class="carre" type="checkbox" id="carre1020" name="radio" /><label
+      for="carre1020" required="required"></label><input class="carre" type="checkbox" id="carre1021"
+      name="radio" /><label onclick="send()" for="carre1021" required="required"></label><input class="carre" type="checkbox"
+      id="carre1022" name="radio" /><label onclick="send()" for="carre1022" required="required"></label><input class="carre"
+      type="checkbox" id="carre1023" name="radio" /><label onclick="send()" for="carre1023" required="required"></label><input
+      class="carre" type="checkbox" id="carre1024" name="radio" /><label onclick="send()" for="carre1024"
+      required="required"></label><input class="carre" type="checkbox" id="carre1025" name="radio" /><label
+      for="carre1025" required="required"></label><input class="carre" type="checkbox" id="carre1026"
+      name="radio" /><label onclick="send()" for="carre1026" required="required"></label><input class="carre" type="checkbox"
+      id="carre1027" name="radio" /><label onclick="send()" for="carre1027" required="required"></label><input class="carre"
+      type="checkbox" id="carre1028" name="radio" /><label onclick="send()" for="carre1028" required="required"></label><input
+      class="carre" type="checkbox" id="carre1029" name="radio" /><label onclick="send()" for="carre1029"
+      required="required"></label><input class="carre" type="checkbox" id="carre1030" name="radio" /><label
+      for="carre1030" required="required"></label><input class="carre" type="checkbox" id="carre1031"
+      name="radio" /><label onclick="send()" for="carre1031" required="required"></label><input class="carre" type="checkbox"
+      id="carre1032" name="radio" /><label onclick="send()" for="carre1032" required="required"></label><input class="carre"
+      type="checkbox" id="carre1033" name="radio" /><label onclick="send()" for="carre1033" required="required"></label><input
+      class="carre" type="checkbox" id="carre1034" name="radio" /><label onclick="send()" for="carre1034"
+      required="required"></label><input class="carre" type="checkbox" id="carre1035" name="radio" /><label
+      for="carre1035" required="required"></label><input class="carre" type="checkbox" id="carre1036"
+      name="radio" /><label onclick="send()" for="carre1036" required="required"></label><input class="carre" type="checkbox"
+      id="carre1037" name="radio" /><label onclick="send()" for="carre1037" required="required"></label><input class="carre"
+      type="checkbox" id="carre1038" name="radio" /><label onclick="send()" for="carre1038" required="required"></label><input
+      class="carre" type="checkbox" id="carre1039" name="radio" /><label onclick="send()" for="carre1039"
+      required="required"></label><input class="carre" type="checkbox" id="carre1040" name="radio" /><label
+      for="carre1040" required="required"></label><input class="carre" type="checkbox" id="carre1041"
+      name="radio" /><label onclick="send()" for="carre1041" required="required"></label><input class="carre" type="checkbox"
+      id="carre1042" name="radio" /><label onclick="send()" for="carre1042" required="required"></label><input class="carre"
+      type="checkbox" id="carre1043" name="radio" /><label onclick="send()" for="carre1043" required="required"></label><input
+      class="carre" type="checkbox" id="carre1044" name="radio" /><label onclick="send()" for="carre1044"
+      required="required"></label><input class="carre" type="checkbox" id="carre1045" name="radio" /><label
+      for="carre1045" required="required"></label><input class="carre" type="checkbox" id="carre1046"
+      name="radio" /><label onclick="send()" for="carre1046" required="required"></label><input class="carre" type="checkbox"
+      id="carre1047" name="radio" /><label onclick="send()" for="carre1047" required="required"></label><input class="carre"
+      type="checkbox" id="carre1048" name="radio" /><label onclick="send()" for="carre1048" required="required"></label><input
+      class="carre" type="checkbox" id="carre1049" name="radio" /><label onclick="send()" for="carre1049"
+      required="required"></label><input class="carre" type="checkbox" id="carre1050" name="radio" /><label
+      for="carre1050" required="required"></label><input class="carre" type="checkbox" id="carre1051"
+      name="radio" /><label onclick="send()" for="carre1051" required="required"></label><input class="carre" type="checkbox"
+      id="carre1052" name="radio" /><label onclick="send()" for="carre1052" required="required"></label><input class="carre"
+      type="checkbox" id="carre1053" name="radio" /><label onclick="send()" for="carre1053" required="required"></label><input
+      class="carre" type="checkbox" id="carre1054" name="radio" /><label onclick="send()" for="carre1054"
+      required="required"></label><input class="carre" type="checkbox" id="carre1055" name="radio" /><label
+      for="carre1055" required="required"></label><input class="carre" type="checkbox" id="carre1056"
+      name="radio" /><label onclick="send()" for="carre1056" required="required"></label><input class="carre" type="checkbox"
+      id="carre1057" name="radio" /><label onclick="send()" for="carre1057" required="required"></label><input class="carre"
+      type="checkbox" id="carre1058" name="radio" /><label onclick="send()" for="carre1058" required="required"></label><input
+      class="carre" type="checkbox" id="carre1059" name="radio" /><label onclick="send()" for="carre1059"
+      required="required"></label><input class="carre" type="checkbox" id="carre1060" name="radio" /><label
+      for="carre1060" required="required"></label><input class="carre" type="checkbox" id="carre1061"
+      name="radio" /><label onclick="send()" for="carre1061" required="required"></label><input class="carre" type="checkbox"
+      id="carre1062" name="radio" /><label onclick="send()" for="carre1062" required="required"></label><input class="carre"
+      type="checkbox" id="carre1063" name="radio" /><label onclick="send()" for="carre1063" required="required"></label><input
+      class="carre" type="checkbox" id="carre1064" name="radio" /><label onclick="send()" for="carre1064"
+      required="required"></label><input class="carre" type="checkbox" id="carre1065" name="radio" /><label
+      for="carre1065" required="required"></label><input class="carre" type="checkbox" id="carre1066"
+      name="radio" /><label onclick="send()" for="carre1066" required="required"></label><input class="carre" type="checkbox"
+      id="carre1067" name="radio" /><label onclick="send()" for="carre1067" required="required"></label><input class="carre"
+      type="checkbox" id="carre1068" name="radio" /><label onclick="send()" for="carre1068" required="required"></label><input
+      class="carre" type="checkbox" id="carre1069" name="radio" /><label onclick="send()" for="carre1069"
+      required="required"></label><input class="carre" type="checkbox" id="carre1070" name="radio" /><label
+      for="carre1070" required="required"></label><input class="carre" type="checkbox" id="carre1071"
+      name="radio" /><label onclick="send()" for="carre1071" required="required"></label><input class="carre" type="checkbox"
+      id="carre1072" name="radio" /><label onclick="send()" for="carre1072" required="required"></label><input class="carre"
+      type="checkbox" id="carre1073" name="radio" /><label onclick="send()" for="carre1073" required="required"></label><input
+      class="carre" type="checkbox" id="carre1074" name="radio" /><label onclick="send()" for="carre1074"
+      required="required"></label><input class="carre" type="checkbox" id="carre1075" name="radio" /><label
+      for="carre1075" required="required"></label><input class="carre" type="checkbox" id="carre1076"
+      name="radio" /><label onclick="send()" for="carre1076" required="required"></label><input class="carre" type="checkbox"
+      id="carre1077" name="radio" /><label onclick="send()" for="carre1077" required="required"></label><input class="carre"
+      type="checkbox" id="carre1078" name="radio" /><label onclick="send()" for="carre1078" required="required"></label><input
+      class="carre" type="checkbox" id="carre1079" name="radio" /><label onclick="send()" for="carre1079"
+      required="required"></label><input class="carre" type="checkbox" id="carre1080" name="radio" /><label
+      for="carre1080" required="required"></label><input class="carre" type="checkbox" id="carre1081"
+      name="radio" /><label onclick="send()" for="carre1081" required="required"></label><input class="carre" type="checkbox"
+      id="carre1082" name="radio" /><label onclick="send()" for="carre1082" required="required"></label><input class="carre"
+      type="checkbox" id="carre1083" name="radio" /><label onclick="send()" for="carre1083" required="required"></label><input
+      class="carre" type="checkbox" id="carre1084" name="radio" /><label onclick="send()" for="carre1084"
+      required="required"></label><input class="carre" type="checkbox" id="carre1085" name="radio" /><label
+      for="carre1085" required="required"></label><input class="carre" type="checkbox" id="carre1086"
+      name="radio" /><label onclick="send()" for="carre1086" required="required"></label><input class="carre" type="checkbox"
+      id="carre1087" name="radio" /><label onclick="send()" for="carre1087" required="required"></label><input class="carre"
+      type="checkbox" id="carre1088" name="radio" /><label onclick="send()" for="carre1088" required="required"></label><input
+      class="carre" type="checkbox" id="carre1089" name="radio" /><label onclick="send()" for="carre1089"
+      required="required"></label><input class="carre" type="checkbox" id="carre1090" name="radio" /><label
+      for="carre1090" required="required"></label><input class="carre" type="checkbox" id="carre1091"
+      name="radio" /><label onclick="send()" for="carre1091" required="required"></label><input class="carre" type="checkbox"
+      id="carre1092" name="radio" /><label onclick="send()" for="carre1092" required="required"></label><input class="carre"
+      type="checkbox" id="carre1093" name="radio" /><label onclick="send()" for="carre1093" required="required"></label><input
+      class="carre" type="checkbox" id="carre1094" name="radio" /><label onclick="send()" for="carre1094"
+      required="required"></label><input class="carre" type="checkbox" id="carre1095" name="radio" /><label
+      for="carre1095" required="required"></label><input class="carre" type="checkbox" id="carre1096"
+      name="radio" /><label onclick="send()" for="carre1096" required="required"></label><input class="carre" type="checkbox"
+      id="carre1097" name="radio" /><label onclick="send()" for="carre1097" required="required"></label><input class="carre"
+      type="checkbox" id="carre1098" name="radio" /><label onclick="send()" for="carre1098" required="required"></label><input
+      class="carre" type="checkbox" id="carre1099" name="radio" /><label onclick="send()" for="carre1099"
+      required="required"></label><input class="carre" type="checkbox" id="carre1100" name="radio" /><label
+      for="carre1100" required="required"></label><input class="carre" type="checkbox" id="carre1101"
+      name="radio" /><label onclick="send()" for="carre1101" required="required"></label><input class="carre" type="checkbox"
+      id="carre1102" name="radio" /><label onclick="send()" for="carre1102" required="required"></label><input class="carre"
+      type="checkbox" id="carre1103" name="radio" /><label onclick="send()" for="carre1103" required="required"></label><input
+      class="carre" type="checkbox" id="carre1104" name="radio" /><label onclick="send()" for="carre1104"
+      required="required"></label><input class="carre" type="checkbox" id="carre1105" name="radio" /><label
+      for="carre1105" required="required"></label><input class="carre" type="checkbox" id="carre1106"
+      name="radio" /><label onclick="send()" for="carre1106" required="required"></label><input class="carre" type="checkbox"
+      id="carre1107" name="radio" /><label onclick="send()" for="carre1107" required="required"></label><input class="carre"
+      type="checkbox" id="carre1108" name="radio" /><label onclick="send()" for="carre1108" required="required"></label><input
+      class="carre" type="checkbox" id="carre1109" name="radio" /><label onclick="send()" for="carre1109"
+      required="required"></label><input class="carre" type="checkbox" id="carre1110" name="radio" /><label
+      for="carre1110" required="required"></label><input class="carre" type="checkbox" id="carre1111"
+      name="radio" /><label onclick="send()" for="carre1111" required="required"></label><input class="carre" type="checkbox"
+      id="carre1112" name="radio" /><label onclick="send()" for="carre1112" required="required"></label><input class="carre"
+      type="checkbox" id="carre1113" name="radio" /><label onclick="send()" for="carre1113" required="required"></label><input
+      class="carre" type="checkbox" id="carre1114" name="radio" /><label onclick="send()" for="carre1114"
+      required="required"></label><input class="carre" type="checkbox" id="carre1115" name="radio" /><label
+      for="carre1115" required="required"></label><input class="carre" type="checkbox" id="carre1116"
+      name="radio" /><label onclick="send()" for="carre1116" required="required"></label><input class="carre" type="checkbox"
+      id="carre1117" name="radio" /><label onclick="send()" for="carre1117" required="required"></label><input class="carre"
+      type="checkbox" id="carre1118" name="radio" /><label onclick="send()" for="carre1118" required="required"></label><input
+      class="carre" type="checkbox" id="carre1119" name="radio" /><label onclick="send()" for="carre1119"
+      required="required"></label><input class="carre" type="checkbox" id="carre1120" name="radio" /><label
+      for="carre1120" required="required"></label><input class="carre" type="checkbox" id="carre1121"
+      name="radio" /><label onclick="send()" for="carre1121" required="required"></label><input class="carre" type="checkbox"
+      id="carre1122" name="radio" /><label onclick="send()" for="carre1122" required="required"></label><input class="carre"
+      type="checkbox" id="carre1123" name="radio" /><label onclick="send()" for="carre1123" required="required"></label><input
+      class="carre" type="checkbox" id="carre1124" name="radio" /><label onclick="send()" for="carre1124"
+      required="required"></label><input class="carre" type="checkbox" id="carre1125" name="radio" /><label
+      for="carre1125" required="required"></label><input class="carre" type="checkbox" id="carre1126"
+      name="radio" /><label onclick="send()" for="carre1126" required="required"></label><input class="carre" type="checkbox"
+      id="carre1127" name="radio" /><label onclick="send()" for="carre1127" required="required"></label><input class="carre"
+      type="checkbox" id="carre1128" name="radio" /><label onclick="send()" for="carre1128" required="required"></label><input
+      class="carre" type="checkbox" id="carre1129" name="radio" /><label onclick="send()" for="carre1129"
+      required="required"></label><input class="carre" type="checkbox" id="carre1130" name="radio" /><label
+      for="carre1130" required="required"></label><input class="carre" type="checkbox" id="carre1131"
+      name="radio" /><label onclick="send()" for="carre1131" required="required"></label><input class="carre" type="checkbox"
+      id="carre1132" name="radio" /><label onclick="send()" for="carre1132" required="required"></label><input class="carre"
+      type="checkbox" id="carre1133" name="radio" /><label onclick="send()" for="carre1133" required="required"></label><input
+      class="carre" type="checkbox" id="carre1134" name="radio" /><label onclick="send()" for="carre1134"
+      required="required"></label><input class="carre" type="checkbox" id="carre1135" name="radio" /><label
+      for="carre1135" required="required"></label><input class="carre" type="checkbox" id="carre1136"
+      name="radio" /><label onclick="send()" for="carre1136" required="required"></label><input class="carre" type="checkbox"
+      id="carre1137" name="radio" /><label onclick="send()" for="carre1137" required="required"></label><input class="carre"
+      type="checkbox" id="carre1138" name="radio" /><label onclick="send()" for="carre1138" required="required"></label><input
+      class="carre" type="checkbox" id="carre1139" name="radio" /><label onclick="send()" for="carre1139"
+      required="required"></label><input class="carre" type="checkbox" id="carre1140" name="radio" /><label
+      for="carre1140" required="required"></label><input class="carre" type="checkbox" id="carre1141"
+      name="radio" /><label onclick="send()" for="carre1141" required="required"></label><input class="carre" type="checkbox"
+      id="carre1142" name="radio" /><label onclick="send()" for="carre1142" required="required"></label><input class="carre"
+      type="checkbox" id="carre1143" name="radio" /><label onclick="send()" for="carre1143" required="required"></label><input
+      class="carre" type="checkbox" id="carre1144" name="radio" /><label onclick="send()" for="carre1144"
+      required="required"></label><input class="carre" type="checkbox" id="carre1145" name="radio" /><label
+      for="carre1145" required="required"></label><input class="carre" type="checkbox" id="carre1146"
+      name="radio" /><label onclick="send()" for="carre1146" required="required"></label><input class="carre" type="checkbox"
+      id="carre1147" name="radio" /><label onclick="send()" for="carre1147" required="required"></label><input class="carre"
+      type="checkbox" id="carre1148" name="radio" /><label onclick="send()" for="carre1148" required="required"></label><input
+      class="carre" type="checkbox" id="carre1149" name="radio" /><label onclick="send()" for="carre1149"
+      required="required"></label><input class="carre" type="checkbox" id="carre1150" name="radio" /><label
+      for="carre1150" required="required"></label><input class="carre" type="checkbox" id="carre1151"
+      name="radio" /><label onclick="send()" for="carre1151" required="required"></label><input class="carre" type="checkbox"
+      id="carre1152" name="radio" /><label onclick="send()" for="carre1152" required="required"></label><input class="carre"
+      type="checkbox" id="carre1153" name="radio" /><label onclick="send()" for="carre1153" required="required"></label><input
+      class="carre" type="checkbox" id="carre1154" name="radio" /><label onclick="send()" for="carre1154"
+      required="required"></label><input class="carre" type="checkbox" id="carre1155" name="radio" /><label
+      for="carre1155" required="required"></label><input class="carre" type="checkbox" id="carre1156"
+      name="radio" /><label onclick="send()" for="carre1156" required="required"></label><input class="carre" type="checkbox"
+      id="carre1157" name="radio" /><label onclick="send()" for="carre1157" required="required"></label><input class="carre"
+      type="checkbox" id="carre1158" name="radio" /><label onclick="send()" for="carre1158" required="required"></label><input
+      class="carre" type="checkbox" id="carre1159" name="radio" /><label onclick="send()" for="carre1159"
+      required="required"></label><input class="carre" type="checkbox" id="carre1160" name="radio" /><label
+      for="carre1160" required="required"></label><input class="carre" type="checkbox" id="carre1161"
+      name="radio" /><label onclick="send()" for="carre1161" required="required"></label><input class="carre" type="checkbox"
+      id="carre1162" name="radio" /><label onclick="send()" for="carre1162" required="required"></label><input class="carre"
+      type="checkbox" id="carre1163" name="radio" /><label onclick="send()" for="carre1163" required="required"></label><input
+      class="carre" type="checkbox" id="carre1164" name="radio" /><label onclick="send()" for="carre1164"
+      required="required"></label><input class="carre" type="checkbox" id="carre1165" name="radio" /><label
+      for="carre1165" required="required"></label><input class="carre" type="checkbox" id="carre1166"
+      name="radio" /><label onclick="send()" for="carre1166" required="required"></label><input class="carre" type="checkbox"
+      id="carre1167" name="radio" /><label onclick="send()" for="carre1167" required="required"></label><input class="carre"
+      type="checkbox" id="carre1168" name="radio" /><label onclick="send()" for="carre1168" required="required"></label><input
+      class="carre" type="checkbox" id="carre1169" name="radio" /><label onclick="send()" for="carre1169"
+      required="required"></label><input class="carre" type="checkbox" id="carre1170" name="radio" /><label
+      for="carre1170" required="required"></label><input class="carre" type="checkbox" id="carre1171"
+      name="radio" /><label onclick="send()" for="carre1171" required="required"></label><input class="carre" type="checkbox"
+      id="carre1172" name="radio" /><label onclick="send()" for="carre1172" required="required"></label><input class="carre"
+      type="checkbox" id="carre1173" name="radio" /><label onclick="send()" for="carre1173" required="required"></label><input
+      class="carre" type="checkbox" id="carre1174" name="radio" /><label onclick="send()" for="carre1174"
+      required="required"></label><input class="carre" type="checkbox" id="carre1175" name="radio" /><label
+      for="carre1175" required="required"></label><input class="carre" type="checkbox" id="carre1176"
+      name="radio" /><label onclick="send()" for="carre1176" required="required"></label><input class="carre" type="checkbox"
+      id="carre1177" name="radio" /><label onclick="send()" for="carre1177" required="required"></label><input class="carre"
+      type="checkbox" id="carre1178" name="radio" /><label onclick="send()" for="carre1178" required="required"></label><input
+      class="carre" type="checkbox" id="carre1179" name="radio" /><label onclick="send()" for="carre1179"
+      required="required"></label><input class="carre" type="checkbox" id="carre1180" name="radio" /><label
+      for="carre1180" required="required"></label><input class="carre" type="checkbox" id="carre1181"
+      name="radio" /><label onclick="send()" for="carre1181" required="required"></label><input class="carre" type="checkbox"
+      id="carre1182" name="radio" /><label onclick="send()" for="carre1182" required="required"></label><input class="carre"
+      type="checkbox" id="carre1183" name="radio" /><label onclick="send()" for="carre1183" required="required"></label><input
+      class="carre" type="checkbox" id="carre1184" name="radio" /><label onclick="send()" for="carre1184"
+      required="required"></label><input class="carre" type="checkbox" id="carre1185" name="radio" /><label
+      for="carre1185" required="required"></label><input class="carre" type="checkbox" id="carre1186"
+      name="radio" /><label onclick="send()" for="carre1186" required="required"></label><input class="carre" type="checkbox"
+      id="carre1187" name="radio" /><label onclick="send()" for="carre1187" required="required"></label><input class="carre"
+      type="checkbox" id="carre1188" name="radio" /><label onclick="send()" for="carre1188" required="required"></label><input
+      class="carre" type="checkbox" id="carre1189" name="radio" /><label onclick="send()" for="carre1189"
+      required="required"></label><input class="carre" type="checkbox" id="carre1190" name="radio" /><label
+      for="carre1190" required="required"></label><input class="carre" type="checkbox" id="carre1191"
+      name="radio" /><label onclick="send()" for="carre1191" required="required"></label><input class="carre" type="checkbox"
+      id="carre1192" name="radio" /><label onclick="send()" for="carre1192" required="required"></label><input class="carre"
+      type="checkbox" id="carre1193" name="radio" /><label onclick="send()" for="carre1193" required="required"></label><input
+      class="carre" type="checkbox" id="carre1194" name="radio" /><label onclick="send()" for="carre1194"
+      required="required"></label><input class="carre" type="checkbox" id="carre1195" name="radio" /><label
+      for="carre1195" required="required"></label><input class="carre" type="checkbox" id="carre1196"
+      name="radio" /><label onclick="send()" for="carre1196" required="required"></label><input class="carre" type="checkbox"
+      id="carre1197" name="radio" /><label onclick="send()" for="carre1197" required="required"></label><input class="carre"
+      type="checkbox" id="carre1198" name="radio" /><label onclick="send()" for="carre1198" required="required"></label><input
+      class="carre" type="checkbox" id="carre1199" name="radio" /><label onclick="send()" for="carre1199"
+      required="required"></label><input class="carre" type="checkbox" id="carre1200" name="radio" /><label
+      for="carre1200" required="required"></label><input class="carre" type="checkbox" id="carre1201"
+      name="radio" /><label onclick="send()" for="carre1201" required="required"></label><input class="carre" type="checkbox"
+      id="carre1202" name="radio" /><label onclick="send()" for="carre1202" required="required"></label><input class="carre"
+      type="checkbox" id="carre1203" name="radio" /><label onclick="send()" for="carre1203" required="required"></label><input
+      class="carre" type="checkbox" id="carre1204" name="radio" /><label onclick="send()" for="carre1204"
+      required="required"></label><input class="carre" type="checkbox" id="carre1205" name="radio" /><label
+      for="carre1205" required="required"></label><input class="carre" type="checkbox" id="carre1206"
+      name="radio" /><label onclick="send()" for="carre1206" required="required"></label><input class="carre" type="checkbox"
+      id="carre1207" name="radio" /><label onclick="send()" for="carre1207" required="required"></label><input class="carre"
+      type="checkbox" id="carre1208" name="radio" /><label onclick="send()" for="carre1208" required="required"></label><input
+      class="carre" type="checkbox" id="carre1209" name="radio" /><label onclick="send()" for="carre1209"
+      required="required"></label><input class="carre" type="checkbox" id="carre1210" name="radio" /><label
+      for="carre1210" required="required"></label><input class="carre" type="checkbox" id="carre1211"
+      name="radio" /><label onclick="send()" for="carre1211" required="required"></label><input class="carre" type="checkbox"
+      id="carre1212" name="radio" /><label onclick="send()" for="carre1212" required="required"></label><input class="carre"
+      type="checkbox" id="carre1213" name="radio" /><label onclick="send()" for="carre1213" required="required"></label><input
+      class="carre" type="checkbox" id="carre1214" name="radio" /><label onclick="send()" for="carre1214"
+      required="required"></label><input class="carre" type="checkbox" id="carre1215" name="radio" /><label
+      for="carre1215" required="required"></label><input class="carre" type="checkbox" id="carre1216"
+      name="radio" /><label onclick="send()" for="carre1216" required="required"></label><input class="carre" type="checkbox"
+      id="carre1217" name="radio" /><label onclick="send()" for="carre1217" required="required"></label><input class="carre"
+      type="checkbox" id="carre1218" name="radio" /><label onclick="send()" for="carre1218" required="required"></label><input
+      class="carre" type="checkbox" id="carre1219" name="radio" /><label onclick="send()" for="carre1219"
+      required="required"></label><input class="carre" type="checkbox" id="carre1220" name="radio" /><label
+      for="carre1220" required="required"></label><input class="carre" type="checkbox" id="carre1221"
+      name="radio" /><label onclick="send()" for="carre1221" required="required"></label><input class="carre" type="checkbox"
+      id="carre1222" name="radio" /><label onclick="send()" for="carre1222" required="required"></label><input class="carre"
+      type="checkbox" id="carre1223" name="radio" /><label onclick="send()" for="carre1223" required="required"></label><input
+      class="carre" type="checkbox" id="carre1224" name="radio" /><label onclick="send()" for="carre1224"
+      required="required"></label><input class="carre" type="checkbox" id="carre1225" name="radio" /><label
+      for="carre1225" required="required"></label>
+  </div>
+  <script src='/socket.io/socket.io.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    var socket = io();
+
+    var cases = document.querySelectorAll("label")
+
+    function changeColor() {
+      var button = document.getElementById("Myelement")
+      var MyColorPicker = document.getElementById("MyColorPicker").value
+      button.style.backgroundColor = MyColorPicker;
+      console.log(MyColorPicker)
+    }
+
+    var send = function () {
+
+      $(cases).on('click', function (event) {
+        socket.emit(document.querySelectorAll("label"), { id: event.target });
+        for (let i = 0; i < cases.length; i++) {
+          cases[i].addEventListener("click", function () {
+            cases[i].style.backgroundColor = MyColorPicker.value;
+            console.log(MyColorPicker)
+            console.log(cases[i])
+          });
+        }
+      })
+
+      socket.emit('la couleur est mise', cases);
+    }
+
+    var receive = function (data) {
+      var casess = document.querySelector('.cases')
+    }
+    socket.on('message: ', receive);
+  </script>
+  <div>
+    <ul id="messages"></ul>
+
+  </div>
+
+</body>
+
+</html>
